@@ -42,15 +42,25 @@ root; no build step. It fetches `status_log.jsonl` from each tracked repo over
 
 ## Environment note
 
-Two credential variables exist in the agent environment and they are **different
-tokens**:
+`gh` reads `GH_TOKEN` before `GITHUB_TOKEN`, so a stale `GH_TOKEN` makes every
+`gh` command fail `Bad credentials` while `GITHUB_TOKEN` is perfectly good: reads
+and `git push` work, `gh` does not. That looks like an expired token and is not.
 
-- `GITHUB_TOKEN` — valid. Use this one.
-- `GH_TOKEN` — stale, returns `401 Bad credentials`.
+Do not `unset` it - **pin it to the live token**, which is correct whether the
+incoming `GH_TOKEN` is stale or absent:
 
-`gh` prefers `GH_TOKEN`, so any `gh` command fails with "Bad credentials" even
-though a perfectly good token is present. This looks exactly like an expired
-token and is not. Diagnose it by testing each variable independently:
+```bash
+export GH_TOKEN=$GITHUB_TOKEN && gh api user -q .login
+```
+
+`GITHUB_TOKEN` is short-lived and has **no agent-side refresh step**: the platform
+re-injects the current value into each command whose text contains the literal
+string `GITHUB_TOKEN`. Reference it again in a new command to get a fresh value.
+A long-running process captures the token at start and 401s after a rotation until
+restarted; `git push` with a token embedded in the remote URL is the same trap
+(use `GIT_TERMINAL_PROMPT=0` and re-point the remote).
+
+Diagnose by testing each variable independently:
 
 ```bash
 env -u GH_TOKEN bash -c 'curl -s -o /dev/null -w "%{http_code}\n" \
@@ -59,8 +69,7 @@ env -u GITHUB_TOKEN bash -c 'curl -s -o /dev/null -w "%{http_code}\n" \
   -H "Authorization: Bearer $GH_TOKEN" https://api.github.com/user'
 ```
 
-The fix is to `unset GH_TOKEN` (or use `env -u GH_TOKEN`) before `gh` and
-`git push`. `curl` with an explicit `Authorization` header and `git` with the
-token in the remote URL both work already, which is why reads succeed while
-`gh` fails. Reads of public repos also work fully unauthenticated, so
-`automation_sweep.py --no-token` and `validate_config.py` run without any token.
+Reads of public repos work fully unauthenticated, so `automation_sweep.py
+--no-token` and `validate_config.py` run without any token.
+
+Full mechanism and evidence: `portfolio-ops/ACCESS_AND_IDENTITIES.md`.
