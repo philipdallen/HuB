@@ -487,7 +487,27 @@ function renderTrend(sweeps) {
   const dots = (vals, yfn, color) => vals.map((v,i) =>
     (v === undefined || v === null || Number.isNaN(v)) ? '' :
     `<circle cx="${x(i).toFixed(1)}" cy="${yfn(v).toFixed(1)}" r="3" fill="${color}" />`).join('');
-  const labels = sweeps.map((s,i) => `<text x="${x(i).toFixed(1)}" y="${H-8}" font-family="IBM Plex Mono, monospace" font-size="10" fill="var(--ink-dim)" text-anchor="middle">${esc(s.ts)}</text>`).join('');
+  // One label per sweep cannot fit: points sit ~22px apart on a dense log
+  // (Rubato holds 41 sweeps across 10 days), while an MM-DD label is ~30px
+  // wide, so every label overprinted its neighbour. Label one point per
+  // distinct day and drop any that would still collide — the line and dots
+  // keep plotting every sweep, only the axis text thins out.
+  const LABEL_PX = 6;          // IBM Plex Mono advance width at font-size 10
+  const LABEL_GAP = 6;         // minimum gap between adjacent labels
+  const labels = (() => {
+    const out = [];
+    let lastRight = -Infinity;
+    let prevDay = null;
+    sweeps.forEach((s, i) => {
+      if (s.ts === prevDay) return;
+      prevDay = s.ts;
+      const cx = x(i), half = (s.ts.length * LABEL_PX) / 2;
+      if (cx - half < lastRight + LABEL_GAP) return;
+      out.push(`<text x="${cx.toFixed(1)}" y="${H-8}" font-family="IBM Plex Mono, monospace" font-size="10" fill="var(--ink-dim)" text-anchor="middle">${esc(s.ts)}</text>`);
+      lastRight = cx + half;
+    });
+    return out.join('');
+  })();
 
   // blocked_ratio changed definition at contract v1 (a sweep whose flow carries
   // `janitorial` is v1). Plotting both definitions as one line would imply a
