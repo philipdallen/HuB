@@ -30,3 +30,5 @@ Do not change `config.json`. The current branch values are correct and verified 
 
 ---
 Filed from the RLM Analyzer triage pass. Filing policy: DEC-001 in `docs/decisions/LOG.md`; consolidated record in `philipdallen/portfolio-ops` (`RLM_TRIAGE_2026-10-01.md`, branch `tasks/rlm-triage-2026-10-01`).
+
+Directive: DEC-001
