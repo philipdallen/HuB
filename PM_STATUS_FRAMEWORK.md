@@ -7,12 +7,38 @@
 > If a source repo maintains its own copy, keep the field names in sync with this
 > one — `index.html` reads the fields below by name.
 
+> **Rework note (2026-10-19).** HuB is now *the work board*: it leads with run
+> activity and the open queue, and every number on the page drills into the
+> records behind it. The `trl` block and the derived flow judgments
+> (`blocked_ratio` colouring, `cycle_time_median_hours` as a headline) are no
+> longer rendered. The `trl` schema is retained below because source repos still
+> commit `status/trl.json` and their own READMEs render it; HuB simply does not.
+> See `HUB_AGENT_HANDOFF.md` §"The work board".
+
 ## Purpose
 
 Each tracked repo owns a `status_log.jsonl` at its repo root, on the branch named
 in HuB's `config.json`. A per-repo **sweep extension** appends one snapshot object
 per line, forever (append-only). HuB never writes this file; it only fetches and
 displays it. See `HUB_AGENT_HANDOFF.md` §"What this repo is not".
+
+Two files feed the dashboard:
+
+- **`status_log.jsonl`** — append-only history, one line per snapshot. Fetched
+  whole by the browser, so each line must stay small. HuB renders the last 12
+  `notes` from it as the Snapshot log and reads the newest line's `automation`
+  block for the header strip's run count.
+- **`work_board.json`** — the current state: queue counts, recent runs, per-day
+  run series, the "needs you" list. Rewritten in place each sweep (never
+  appended), so it cannot grow without bound. Written by `automation_sweep.py`
+  into HuB itself. See `HUB_AGENT_HANDOFF.md` §"The work board" for the shape.
+
+Why the split: a single append-only line carrying the full work board measured
+~12 KB against the old ~370 B line. At ~5 appends/day that is ~22 MB/year of
+append-only history that **every visitor downloads on every page load**. The
+static-page budget (no backend, public CDN) cannot absorb that, so the
+accumulating file stays tiny and the current-state detail lives in a file that
+does not accumulate.
 
 ## Record format
 
@@ -29,10 +55,31 @@ the convention and is what keeps diffs readable.
 
 | Field | Type | Required | Meaning |
 |---|---|---|---|
-| `timestamp` | string (ISO-8601, parseable by `new Date()`) | recommended | When the snapshot was taken. Used for ordering and the trend x-axis label (rendered as `MM-DD`). Missing/garbage timestamps collapse the ordering; always emit one. |
-| `trl` | object: `{componentName: integer 0–9}` | optional | Technology-Readiness-Level per component. Rendered as bars; the **last** record's `trl` drives the per-component panel and the "TRL by component" card. |
-| `flow` | object (see below) | optional | Kanban/flow metrics from the latest sweep. |
+| `timestamp` | string (ISO-8601, parseable by `new Date()`) | recommended | When the snapshot was taken. Used for ordering and the Snapshot log. Missing/garbage timestamps collapse the ordering; always emit one. |
+| `automation` | object (see below) | optional | Automation-health summary, written only by HuB's own `automation_sweep.py`. Drives the work board's header strip. |
+| `trl` | object: `{componentName: integer 0–9}` | optional | Technology-Readiness-Level per component. **No longer rendered by HuB** (see the rework note). Source repos still commit it for their own READMEs. |
+| `flow` | object (see below) | optional | Kanban/flow metrics from the latest sweep. The work board's queue section supersedes its headline judgments. |
 | `notes` | string | optional | Free-text note. Records that have `notes` populate the "Snapshot log" (last 12 shown, newest first). |
+
+### `automation` object
+
+Written by HuB's own `automation_sweep.py`. Deliberately small: the log is
+append-only and fetched whole, so the detailed current-state blocks live in
+`work_board.json` instead.
+
+| Key | Type | Meaning |
+|---|---|---|
+| `runs_24h`, `runs_7d` | number | Distinct run-ids whose encoded start falls in the window. The same id seen in two repos counts once. |
+| `repos_active_24h` | array of string | Repos with at least one run in the last 24h. Omitted when empty. |
+| `claims_total` | number | Claim files currently held. |
+| `claims_held` | object `{repo: n}` | Per-repo claim-file counts. Omitted when no repo has the mechanism, since a repo without `claims/` would contribute a false zero. |
+| `stale_claims`, `stale_claims_total` | array, number | Claims whose issue is already closed. Omitted / zero when none. |
+| `last_run`, `last_run_id` | string | The most recent run's start and id. Omitted when no runs are visible. |
+| `available_total` | number | Open `status:available` issues across tracked repos. Lets a falling run count be told apart from an empty queue. |
+
+**Deliberately absent: failure rate and idle rate.** A failed run dies before it
+comments, so it leaves no public trace. An absent field renders as an em dash,
+never as `0`.
 
 ### `flow` object
 
@@ -50,16 +97,15 @@ schema stays readable.
 | `blocked` | number | Issues awaiting **human input** — `status:blocked-needs-input`, excluding `on-hold` and `auditor:*` (the audit queue, tracked separately). **Redefined at contract v1 2026-09-21.** |
 | `janitorial` | number | The excluded `status:blocked-needs-input` count (`on-hold` / `auditor:*`). Present only from contract v1, so its presence marks a v1 record. |
 | `needs_review` | number | Issues carrying `needs-review` or any `review:*` label. |
-| `blocked_ratio` | number 0–1 | `blocked / open_total`. Rendered as a percentage; coloured amber above `0.25`, rose above `0.40`. |
-| `cycle_time_median_hours` | number | Median cycle time, hours. Omitted when nothing closed in the 30-day window. |
+| `blocked_ratio` | number 0–1 | `blocked / open_total`. **HuB no longer colours this** (a derived judgment with no drill-down); the raw `blocked` count is what the queue shows. |
+| `cycle_time_median_hours` | number | Median cycle time, hours. Omitted when nothing closed in the 30-day window. **No longer a headline on HuB.** |
 | `closed_last_30d` | number | Closed issues in the same window. Present only with `cycle_time_median_hours`. |
-| `stale_reversions_since_last` | number | Reversions discovered by the stale-claim sweep since the previous snapshot. Coloured amber when `> 0`. |
+| `stale_reversions_since_last` | number | Reversions discovered by the stale-claim sweep since the previous snapshot. |
 
 An absent `flow` key renders as an em dash, **not** `0`. A zero published for a
 field that was never measured is a false statement, which is `hub_sweep.py`'s own
-rule. The trend chart plots, per record, the **mean of that record's `trl`
-values** against `0–9`, and `blocked_ratio` against `0–1`; a gap means the field
-was absent, and the line is split at a metric-definition change.
+rule. This is also the work board's rule: the queue shows an em dash for a repo
+whose issues could not be read, never a zero.
 
 **Why `blocked` is scoped.** Before v1 it counted every `status:blocked-needs-input`
 issue regardless of cause. On 2026-09-21 the auditor relabelled five of its own
@@ -71,9 +117,10 @@ visible discontinuity in the trend, never as an edited past.
 
 ### TRL rendering bands
 
-`index.html` colours a TRL bar by value: `>= 6` teal, `>= 4` blue, `>= 2` amber,
-otherwise rose. These thresholds are presentation only — they are a glanceable
-cue, not a second definition. The meaning of a level is the table below.
+Source repos colour a TRL bar by value in their own READMEs: `>= 6` teal,
+`>= 4` blue, `>= 2` amber, otherwise rose. These thresholds are presentation
+only — they are a glanceable cue, not a second definition. HuB does not render
+TRL at all (see the rework note); the meaning of a level is the table below.
 
 ## What TRL means here
 
@@ -204,12 +251,12 @@ task and should not be changed by an automated sweep; the sweep only copies the
 committed values into the next snapshot.
 
 Mechanically: commit `status/trl.json` at the repo root on the tracked branch.
-A change appears in the dashboard after the next sweep (nominally every 30 minutes, but GitHub throttles scheduled runs: observed ~7 runs/24h, median gap 2.3-2.7h, worst 6.3h; plus the
+A change appears in that repo's own README on the next sweep (nominally every 30 minutes, but GitHub throttles scheduled runs: observed ~7 runs/24h, median gap 2.3-2.7h, worst 6.3h; plus the
 CDN's ~5 minutes). Each source repo's `docs/HUB_STATUS_LOG.md` lists that repo's
 candidate components and carries a `status/trl.json.template` to start from —
 rename the template to `trl.json` once real levels are set. Until then the field
-is simply absent and HuB shows "No TRL entries", which is the correct state for a
-repo that has not made the judgement yet.
+is simply absent, which is the correct state for a repo that has not made the
+judgement yet.
 
 ## Where the data comes from
 
@@ -226,14 +273,15 @@ label claims, and stale-claim sweeps — see the source repos' own
 
 All four tracked repos (Maith, PleaNP, ephapse, rubato) have the sweep extension
 and the scheduled `hub_sweep` workflow installed on their tracked and default
-branches, so `status_log.jsonl` exists and is appended to automatically. All four
-dashboard tabs show real `flow` data.
+branches, so `status_log.jsonl` exists and is appended to automatically. Their
+own READMEs render real `flow` data.
 
 `trl` is **populated** as of 2026-09-20. Each repo's `status/trl.json` carries a
-`components` map (what the dashboard reads) plus a `_rationale` map recording, per
-component, the exact rule and evidence the level was read off — so a rating can be
-challenged on its evidence rather than its adjective. `_rationale` is ignored by
-the sweep parser by design; only `components` is read.
+`components` map plus a `_rationale` map recording, per component, the exact rule
+and evidence the level was read off — so a rating can be challenged on its
+evidence rather than its adjective. `_rationale` is ignored by the sweep parser
+by design; only `components` is read. HuB itself no longer renders `trl` (see the
+rework note at the top); the source repos' own READMEs do.
 
 Levels are **derived from each repo's own ladder**, never estimated. A component
 is only rated where the repo's own structure says so, and where a repo documents

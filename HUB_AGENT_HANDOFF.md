@@ -55,25 +55,56 @@ Verified end to end, not assumed:
 
 ## What this repo is
 
-HuB is a read-only, static dashboard aggregating `status_log.jsonl` from
-the repos listed in `config.json` (currently Maith, PleaNP, ephapse, rubato), rendering TRL maturity and Kanban flow metrics per repo.
-Hosted on GitHub Pages. See PM_STATUS_FRAMEWORK.md (in Maith, or copied
-here for reference) for what TRL and the flow metrics mean and where the
-source data comes from.
+HuB is a read-only, static dashboard — **the work board**. It aggregates
+`status_log.jsonl` from the repos listed in `config.json` (currently Maith,
+PleaNP, ephapse, rubato) plus a current-state `work_board.json`, and leads with
+run activity and the open queue. Its one design rule is **no orphan numbers**:
+every number answers its own follow-up question by drilling into the records
+behind it, or it does not ship. Hosted on GitHub Pages. See PM_STATUS_FRAMEWORK.md
+for the record schema and §"The work board" below for the rework.
 
 ## What this repo is not
 
-- Not a place any repo's status data gets written. HuB only fetches and
+- Not a place any source repo's status data gets written. HuB only fetches and
   displays. Source repos own their own `status_log.jsonl` and write to it
-  themselves via their own sweep extension.
+  themselves via their own sweep extension. (The two files HuB writes —
+  `status_log.jsonl`'s `automation` summary and `work_board.json` — are its own,
+  about the automation, not any source repo's status.)
 - Not a build step, not a backend, not a database. Two static files
-  (`index.html`, `config.json`) served by GitHub Pages. If this repo ever
-  seems to need a server, that's a sign of scope creep — stop and check
-  against this doc before adding one.
+  (`index.html`, `config.json`) served by GitHub Pages, plus the two data files
+  the sweep writes. If this repo ever seems to need a server, that's a sign of
+  scope creep — stop and check against this doc before adding one.
 - Not authoritative. If HuB shows something a source repo's own issue
   tracker disagrees with, the source repo is correct — HuB is a mirror,
   reading data that can lag up to ~5 minutes behind a commit due to
   raw.githubusercontent.com's CDN cache.
+
+## The work board
+
+Reworked 2026-10-19 from the proposal in HuB issue #22. Three sections, in order,
+each with drillable numbers:
+
+1. **Header strip — "Is the machine running?"** Last sweep (red past 6h), runs in
+   the last 24h plus a per-repo breakdown, claims held, stale claims.
+2. **Activity — "Is work getting done?"** A per-repo runs/day stacked bar for the
+   last 30 days, and a recent-runs table (repo, issue, run-id, duration, outcome;
+   every row links to its issue).
+3. **Queue — "What's open?"** Per-repo available / claimed / blocked-needs-input /
+   on-hold counts, each linking to a filtered GitHub issue list, plus a "Needs
+   you" panel of every blocked-needs-input and needs:human issue, oldest first.
+
+Removed: TRL bars and the mean-TRL trend line (the metric misfires on research
+repos, no log record carried a `trl` key, and it answers "how mature?" not "is
+work getting done?"). Demoted: `blocked_ratio` colouring and
+`cycle_time_median_hours` as headlines — the raw counts stay, the verdicts go.
+Kept: the snapshot log and the em-dash rule.
+
+**Two files, deliberately split.** The sweep appends a small `automation`
+summary to `status_log.jsonl` and rewrites `work_board.json` in place. A single
+line carrying the full board measured ~12 KB (vs the old ~370 B), which at
+~5 appends/day is ~22 MB/year of append-only history every visitor would
+download on every load. The accumulating file stays tiny; the current-state
+detail does not accumulate.
 
 ## Architecture (why it's built this way)
 
@@ -174,9 +205,13 @@ Nothing is outstanding. The system is live: each source repo appends its own
 snapshot every 30 minutes and HuB reads it.
 
 Known, deliberate non-issues (do not "fix"):
-- TRL levels are populated and derived from each repo's own ladder. They are
-  **judgements with recorded rationales**, not measurements: never "correct" a
-  level by editing the number alone. Change the evidence, then the level. A level
-  above a repo's documented ceiling is invalid by construction.
+- TRL levels are still maintained per repo as **judgements with recorded
+  rationales**, not measurements: never "correct" a level by editing the number
+  alone. Change the evidence, then the level. A level above a repo's documented
+  ceiling is invalid by construction. HuB no longer renders TRL; the source
+  repos' own READMEs do.
 - A snapshot appears in the dashboard up to ~5 minutes after it is committed,
   because `raw.githubusercontent.com` is CDN-cached.
+- The work board's `work_board.json` is rewritten every sweep, so its `generated`
+  timestamp advances even when no new log line was appended. That is intentional:
+  it is a current-state file, not history.

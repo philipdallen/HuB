@@ -62,8 +62,10 @@ jobs:
           # Stage first, then test the index. `git diff --quiet -- <path>` would
           # ignore the untracked file on the first-ever run and silently discard
           # it; `git diff --cached` after `git add` catches creation too.
-          git add -- status_log.jsonl
-          if git diff --cached --quiet -- status_log.jsonl; then
+          # work_board.json is rewritten every sweep, so it changes even when the
+          # appended log line does not.
+          git add -- status_log.jsonl work_board.json
+          if git diff --cached --quiet -- status_log.jsonl work_board.json; then
             echo "no change; nothing to commit"
             exit 0
           fi

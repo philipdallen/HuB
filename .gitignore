@@ -6,6 +6,7 @@ Thumbs.db
 
 # Scratch
 .agent_tmp/
+__pycache__/
 
 # Never commit tokens or credentials into this repo.
 .env
