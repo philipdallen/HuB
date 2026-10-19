@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>HuB — Repo Status</title>
+<title>HuB — the work board</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
@@ -34,7 +34,7 @@
       linear-gradient(90deg, var(--line) 1px, transparent 1px);
     background-size: 28px 28px; background-attachment: fixed;
   }
-  .wrap { max-width: 1040px; margin: 0 auto; padding: 28px 20px 60px; }
+  .wrap { max-width: 1080px; margin: 0 auto; padding: 28px 20px 60px; }
   header.top { display: flex; align-items: baseline; justify-content: space-between;
     flex-wrap: wrap; gap: 10px; border-bottom: 2px solid var(--ink);
     padding-bottom: 14px; margin-bottom: 22px; }
@@ -46,6 +46,7 @@
     padding: 5px 10px; border-radius: var(--radius); cursor: pointer; }
   .btn:hover { color: var(--ink); border-color: var(--ink-dim); }
   .btn:focus-visible { outline: 2px solid var(--blue); outline-offset: 1px; }
+
   nav.tabs { display: flex; gap: 2px; margin-bottom: 20px; flex-wrap: wrap; }
   nav.tabs button { font-family: 'IBM Plex Mono', monospace; font-size: 0.82rem;
     background: var(--panel); color: var(--ink-dim); border: 1px solid var(--line-strong);
@@ -58,27 +59,15 @@
   nav.tabs button .dot.err { background: var(--rose); }
   nav.tabs button:focus-visible { outline: 2px solid var(--blue); outline-offset: 1px; }
   .panel-line { border-top: 1px solid var(--line-strong); margin-bottom: 26px; }
-  .grid { display: grid; grid-template-columns: 1.3fr 1fr; gap: 18px; margin-bottom: 22px; }
-  @media (max-width: 720px) { .grid { grid-template-columns: 1fr; } }
+
   .card { background: var(--panel); border: 1px solid var(--line-strong);
-    border-radius: var(--radius); padding: 18px 20px; }
+    border-radius: var(--radius); padding: 18px 20px; margin-bottom: 22px; }
   .card h2 { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.06em;
     color: var(--ink-dim); margin: 0 0 16px; font-weight: 600; font-family: 'IBM Plex Mono', monospace; }
-  .trl-row { margin-bottom: 14px; }
-  .trl-row:last-child { margin-bottom: 0; }
-  .trl-label { display: flex; justify-content: space-between; align-items: baseline;
-    font-size: 0.82rem; margin-bottom: 5px; }
-  .trl-label .val { font-family: 'IBM Plex Mono', monospace; color: var(--ink-dim); font-size: 0.78rem; }
-  .trl-track { position: relative; height: 16px; background: var(--bg);
-    border: 1px solid var(--line-strong); border-radius: var(--radius); }
-  .trl-fill { position: absolute; top: 0; left: 0; bottom: 0; border-radius: var(--radius) 0 0 var(--radius); }
-  .trl-ticks { position: absolute; inset: 0; display: flex; }
-  .trl-ticks span { flex: 1; border-right: 1px solid var(--panel);
-    font-family: 'IBM Plex Mono', monospace; font-size: 0.55rem; color: var(--panel);
-    display: flex; align-items: center; justify-content: flex-end; padding-right: 2px;
-    mix-blend-mode: difference; }
-  .trl-ticks span:last-child { border-right: none; }
-  .stat-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .card h2 .q { color: var(--ink); text-transform: none; letter-spacing: 0; }
+
+  /* Header strip: "is the machine running?" */
+  .strip { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 14px; }
   .stat { border: 1px solid var(--line-strong); border-radius: var(--radius);
     padding: 12px 12px 10px; position: relative; }
   .stat::before, .stat::after { content: ''; position: absolute; width: 6px; height: 6px;
@@ -88,21 +77,40 @@
   .stat .num { font-family: 'IBM Plex Mono', monospace; font-size: 1.5rem; font-weight: 600; line-height: 1; }
   .stat .num.warn { color: var(--amber); }
   .stat .num.crit { color: var(--rose); }
+  .stat .num a { color: inherit; text-decoration: none; border-bottom: 1px dotted currentColor; }
+  .stat .num a:hover { border-bottom-style: solid; }
+  .stat .lbl a { color: var(--blue); text-decoration: none; }
+  .stat .lbl a:hover { text-decoration: underline; }
   .stat .lbl { font-size: 0.68rem; color: var(--ink-dim); margin-top: 6px; font-family: 'IBM Plex Mono', monospace; }
-  .trend-card { margin-bottom: 22px; }
-  .trend-svg { width: 100%; height: auto; display: block; }
+  .stat .lbl .mini { display: block; margin-top: 3px; color: var(--ink-dim); }
+
+  .chart { width: 100%; height: auto; display: block; }
   .legend { display: flex; gap: 16px; margin-top: 10px; flex-wrap: wrap; }
   .legend .item { display: flex; align-items: center; gap: 6px;
     font-family: 'IBM Plex Mono', monospace; font-size: 0.72rem; color: var(--ink-dim); }
   .legend .swatch { width: 10px; height: 10px; border-radius: 2px; }
+
+  table { width: 100%; border-collapse: collapse; font-size: 0.78rem; }
+  th { text-align: left; font-family: 'IBM Plex Mono', monospace; font-size: 0.66rem;
+    text-transform: uppercase; letter-spacing: 0.05em; color: var(--ink-dim);
+    font-weight: 600; border-bottom: 1px solid var(--line-strong); padding: 6px 8px; }
+  td { padding: 6px 8px; border-bottom: 1px dashed var(--line); font-family: 'IBM Plex Mono', monospace; }
+  tr:last-child td { border-bottom: none; }
+  td a { color: var(--blue); text-decoration: none; }
+  td a:hover { text-decoration: underline; }
+  .pill { display: inline-block; font-size: 0.66rem; padding: 1px 6px; border-radius: 8px;
+    border: 1px solid var(--line-strong); color: var(--ink-dim); }
+  .pill.done { border-color: var(--teal); color: var(--teal); }
+  .pill.open { border-color: var(--amber); color: var(--amber); }
+
   .log { font-family: 'IBM Plex Mono', monospace; font-size: 0.76rem; color: var(--ink-dim);
     border: 1px solid var(--line-strong); border-radius: var(--radius); padding: 12px 16px;
-    max-height: 160px; overflow-y: auto; background: var(--panel); }
+    max-height: 180px; overflow-y: auto; background: var(--panel); }
   .log .entry { padding: 3px 0; border-bottom: 1px dashed var(--line); display: flex; gap: 10px; }
   .log .entry:last-child { border-bottom: none; }
   .log .ts { color: var(--ink); flex-shrink: 0; }
   .state-msg { font-family: 'IBM Plex Mono', monospace; font-size: 0.8rem; color: var(--ink-dim);
-    padding: 24px 4px; line-height: 1.7; }
+    padding: 20px 4px; line-height: 1.7; }
   .state-msg .file { color: var(--ink); }
   .state-msg code { background: var(--bg); border: 1px solid var(--line); border-radius: 2px;
     padding: 1px 5px; }
@@ -114,8 +122,8 @@
 <div class="wrap">
   <header class="top">
     <div>
-      <h1>HuB — Repo Status</h1>
-      <div class="sub" id="subline">loading config…</div>
+      <h1>HuB — the work board</h1>
+      <div class="sub" id="subline">loading…</div>
     </div>
     <div class="btns">
       <button class="btn" id="refreshBtn" type="button">refresh</button>
@@ -132,12 +140,15 @@
 
 <script>
 const CONFIG_URL = './config.json';
+const BOARD_NAME = 'work_board.json';
 let CONFIG = null;
-let REPO_STATE = {}; // name -> { status: 'loading'|'ok'|'empty'|'error', entries: [...] }
+let BOARD = null;              // the current-state document, or null
+let BOARD_ERR = null;
+let REPO_STATE = {};           // name -> { status, entries, detail }
 let current = null;
 
-function rawUrl(r) {
-  return `https://raw.githubusercontent.com/${r.owner}/${r.repo}/${r.branch}/status_log.jsonl`;
+function rawUrl(r, file) {
+  return `https://raw.githubusercontent.com/${r.owner}/${r.repo}/${r.branch}/${file}`;
 }
 
 function esc(s) {
@@ -152,21 +163,133 @@ function parseJSONL(text) {
   }).filter(Boolean).sort((a, b) => new Date(a.timestamp) - new Date(b.timestamp));
 }
 
+// A value the sweep did not measure renders as an em dash, never as 0.
+// See PM_STATUS_FRAMEWORK.md and the "absent field is a true statement" rule.
+function em(v) { return (v === undefined || v === null) ? '—' : v; }
+
+// The board keys repos by their GitHub repo name (lowercase, e.g. "ephapse"),
+// while config.json uses display names ("Ephapse"). Match on either, case
+// insensitively, so a row for a board repo resolves to its config entry and
+// therefore to a real GitHub URL.
+function repoByName(name) {
+  if (!CONFIG || !name) return null;
+  const k = String(name).toLowerCase();
+  return CONFIG.repos.find(r => r.name.toLowerCase() === k || r.repo.toLowerCase() === k) || null;
+}
+
+function issueUrl(repoName, number) {
+  const r = repoByName(repoName);
+  return r ? `https://github.com/${r.owner}/${r.repo}/issues/${number}` : null;
+}
+
+function issueLink(repoName, number) {
+  const url = issueUrl(repoName, number);
+  const label = `${esc(repoName)} #${esc(number)}`;
+  return url ? `<a href="${esc(url)}" target="_blank" rel="noopener">${label}</a>` : label;
+}
+
+// A filtered issue-list link, so every count is drillable to the records.
+function issueListUrl(repoName, label) {
+  const r = repoByName(repoName);
+  if (!r) return null;
+  return `https://github.com/${r.owner}/${r.repo}/issues`
+    + `?q=is%3Aissue+is%3Aopen+label%3A%22${encodeURIComponent(label)}%22`;
+}
+
+// The claim files themselves — the records behind a claim count. A claim file
+// is named after its issue, so this is one step from the number to the lock.
+function claimsDirUrl(repoName) {
+  const r = repoByName(repoName);
+  if (!r) return null;
+  return `https://github.com/${r.owner}/${r.repo}/tree/${r.branch}/claims`;
+}
+
+// A repo's open issues — where its run comments live. A run is scraped from an
+// issue comment, so this is the record set behind a per-repo run count.
+function repoIssuesUrl(repoName) {
+  const r = repoByName(repoName);
+  if (!r) return null;
+  return `https://github.com/${r.owner}/${r.repo}/issues?q=is%3Aissue+is%3Aopen`;
+}
+
+// A filtered issue-list link matching ANY of several labels (GitHub ORs a
+// comma-separated label: list). Used where a count is defined as a union, e.g.
+// "awaiting review" = needs-review plus any review:* label.
+function issueListUrlAny(repoName, labels) {
+  const r = repoByName(repoName);
+  if (!r || !labels || !labels.length) return null;
+  const q = labels.map(l => `%22${encodeURIComponent(l)}%22`).join('%2C');
+  return `https://github.com/${r.owner}/${r.repo}/issues?q=is%3Aissue+is%3Aopen+label%3A${q}`;
+}
+
+// Closed in the last N days — the records behind a "closed (Nd)" count.
+function closedIssuesUrl(repoName, days) {
+  const r = repoByName(repoName);
+  if (!r) return null;
+  const since = new Date(Date.now() - days * 864e5).toISOString().slice(0, 10);
+  return `https://github.com/${r.owner}/${r.repo}/issues`
+    + `?q=is%3Aissue+is%3Aclosed+closed%3A%3E%3D${since}`;
+}
+
+// A number, linked to its records when the value is measured and the target is
+// known. An em dash is unmeasured, so it is never a link.
+function statLink(val, href, text) {
+  const label = `${esc(val)}${text ? ' ' + esc(text) : ''}`;
+  return href ? `<a href="${esc(href)}" target="_blank" rel="noopener">${label}</a>` : label;
+}
+
+function relTime(iso) {
+  if (!iso) return '—';
+  const t = new Date(iso).getTime();
+  if (Number.isNaN(t)) return '—';
+  const mins = Math.round((Date.now() - t) / 60000);
+  if (mins < 1) return 'just now';
+  if (mins < 60) return `${mins} min ago`;
+  const hrs = Math.round(mins / 60);
+  if (hrs < 48) return `${hrs} h ago`;
+  return `${Math.round(hrs / 24)} d ago`;
+}
+
+function hoursSince(iso) {
+  if (!iso) return null;
+  const t = new Date(iso).getTime();
+  if (Number.isNaN(t)) return null;
+  return (Date.now() - t) / 3600000;
+}
+
+function fmtMinutes(m) {
+  if (m === undefined || m === null) return '—';
+  if (m < 60) return `${Math.round(m)}m`;
+  const h = Math.floor(m / 60), r = Math.round(m % 60);
+  return r ? `${h}h ${r}m` : `${h}h`;
+}
+
 async function loadRepo(r) {
   REPO_STATE[r.name] = { status: 'loading', entries: [] };
   try {
-    const res = await fetch(rawUrl(r), { cache: 'no-store' });
+    const res = await fetch(rawUrl(r, 'status_log.jsonl'), { cache: 'no-store' });
     if (!res.ok) {
       REPO_STATE[r.name] = { status: res.status === 404 ? 'empty' : 'error', entries: [], detail: `HTTP ${res.status}` };
       return;
     }
-    const text = await res.text();
-    const entries = parseJSONL(text);
-    REPO_STATE[r.name] = entries.length
-      ? { status: 'ok', entries }
-      : { status: 'empty', entries: [] };
+    const entries = parseJSONL(await res.text());
+    REPO_STATE[r.name] = entries.length ? { status: 'ok', entries } : { status: 'empty', entries: [] };
   } catch (e) {
     REPO_STATE[r.name] = { status: 'error', entries: [], detail: String(e) };
+  }
+}
+
+// The board lives beside the automation log, in this repo. A tab whose repo
+// has no board shows the tab-local view instead, so nothing is fabricated.
+async function loadBoard() {
+  const self = CONFIG.repos.find(r => r.name === 'Automation') || CONFIG.repos[0];
+  try {
+    const res = await fetch(rawUrl(self, BOARD_NAME), { cache: 'no-store' });
+    if (!res.ok) { BOARD_ERR = `HTTP ${res.status}`; return; }
+    BOARD = await res.json();
+    BOARD_ERR = null;
+  } catch (e) {
+    BOARD_ERR = String(e);
   }
 }
 
@@ -190,12 +313,11 @@ async function loadAll() {
     showConfigError('config.json has no "repos" array.');
     return;
   }
-  document.getElementById('subline').textContent =
-    `${CONFIG.repos.length} repo(s) tracked — raw.githubusercontent.com may cache up to ~5 min`;
 
   buildTabs();
-  document.getElementById('subline').textContent = 'fetching status logs…';
+  document.getElementById('subline').textContent = 'fetching…';
   await Promise.all(CONFIG.repos.map(loadRepo));
+  await loadBoard();
   if (!current) current = CONFIG.repos[0].name;
   updateTabDots();
   renderCurrent();
@@ -239,16 +361,9 @@ function updateTabDots() {
   });
 }
 
-function trlColor(v) {
-  if (v >= 6) return 'var(--teal)';
-  if (v >= 4) return 'var(--blue)';
-  if (v >= 2) return 'var(--amber)';
-  return 'var(--rose)';
-}
-
 function renderEmptyState(name, state) {
   const body = document.getElementById('body');
-  const repo = CONFIG.repos.find(r => r.name === name) || {};
+  const repo = repoByName(name) || {};
   if (state.status === 'loading') {
     body.innerHTML = `<div class="card"><div class="state-msg">
       Fetching <code>status_log.jsonl</code> for <span class="file">${esc(name)}</span>…
@@ -258,8 +373,7 @@ function renderEmptyState(name, state) {
       No <code>status_log.jsonl</code> found yet for <span class="file">${esc(name)}</span> on branch
       <code>${esc(repo.branch)}</code>.<br><br>
       This repo hasn't wired up the sweep extension yet — see <code>PM_STATUS_FRAMEWORK.md</code>
-      in this repo for the record schema. Once its sweep appends its first snapshot line,
-      it'll appear here automatically.
+      in this repo for the record schema.
     </div></div>`;
   } else {
     body.innerHTML = `<div class="card"><div class="state-msg">
@@ -271,273 +385,392 @@ function renderEmptyState(name, state) {
   }
 }
 
-function currentRepo() {
-  return CONFIG.repos.find(r => r.name === current);
-}
-
 function renderCurrent() {
+  const repo = repoByName(current);
+  if (repo) {
+    document.getElementById('footNote').textContent =
+      `Source: https://raw.githubusercontent.com/${repo.owner}/${repo.repo}/${repo.branch}/status_log.jsonl`;
+  }
   const state = REPO_STATE[current];
-  const repo = currentRepo();
-  document.getElementById('footNote').textContent =
-    `Source: https://raw.githubusercontent.com/${repo.owner}/${repo.repo}/${repo.branch}/status_log.jsonl`;
-
+  if (current === 'Automation') { renderBoard(); return; }
   if (!state || state.status !== 'ok') {
     renderEmptyState(current, state || { status: 'loading' });
     return;
   }
-
-  const entries = state.entries;
-  const latest = entries[entries.length - 1];
-
-  // The Automation tab publishes a different block — no flow, no trl — because
-  // it reports on the automation itself rather than on a repo's delivery state.
-  if (latest.automation) {
-    renderAutomation(entries);
-    return;
-  }
-
-  const components = latest.trl || {};
-  // Missing fields stay undefined. The sweep's own rule is "an absent field is
-  // a true statement" — defaulting to 0 here would turn "not measured" into a
-  // published zero. See portfolio-ops/METRIC_CONTRACT.md rule 4.
-  const sweeps = entries.map(e => {
-    const trlVals = Object.values(e.trl || {});
-    const avgTrl = trlVals.length ? trlVals.reduce((a,b)=>a+b,0) / trlVals.length : undefined;
-    const f = e.flow || {};
-    return {
-      ts: (e.timestamp || '').slice(5, 10),
-      wip: f.wip,
-      blocked: f.blocked,
-      janitorial: f.janitorial,
-      available: f.available,
-      needs_review: f.needs_review,
-      open_total: f.open_total,
-      blocked_ratio: f.blocked_ratio,
-      cycle_h: f.cycle_time_median_hours,
-      stale: f.stale_reversions_since_last,
-      _avgTrl: avgTrl
-    };
-  });
-  const log = entries.slice().reverse().filter(e => e.notes).slice(0, 12)
-    .map(e => ({ ts: e.timestamp, note: e.notes }));
-
-  document.getElementById('body').innerHTML = `
-    <div class="grid">
-      <div class="card"><h2>TRL by component</h2><div id="trlRows"></div></div>
-      <div class="card"><h2>Flow — latest sweep</h2><div class="stat-grid" id="statGrid"></div></div>
-    </div>
-    <div class="card trend-card">
-      <h2>TRL trend (component avg) &amp; blocked ratio</h2>
-      <svg class="trend-svg" id="trendSvg" viewBox="0 0 960 220" preserveAspectRatio="xMidYMid meet"></svg>
-      <div class="legend">
-        <div class="item"><span class="swatch" style="background:var(--blue)"></span>TRL avg (0–9 axis)</div>
-        <div class="item"><span class="swatch" style="background:var(--amber)"></span>blocked ratio (0–1 axis)</div>
-      </div>
-    </div>
-    <div class="card"><h2>Snapshot log</h2><div class="log" id="logList"></div></div>
-  `;
-
-  renderTRL(components);
-  renderStats(sweeps[sweeps.length - 1]);
-  renderLog(log);
-  renderTrend(sweeps);
+  renderRepoCard(current, state.entries);
 }
 
-function renderTRL(components) {
-  const el = document.getElementById('trlRows');
-  const names = Object.keys(components);
-  if (!names.length) { el.innerHTML = '<div class="state-msg">No TRL entries in the latest snapshot.</div>'; return; }
-  el.innerHTML = names.map(name => {
-    const val = Number(components[name]);
-    const pct = Math.max(0, Math.min(100, (val / 9) * 100));
-    return `
-      <div class="trl-row">
-        <div class="trl-label"><span class="name">${esc(name)}</span><span class="val">TRL ${esc(val)}/9</span></div>
-        <div class="trl-track">
-          <div class="trl-fill" style="width:${pct}%; background:${trlColor(val)}"></div>
-          <div class="trl-ticks">${[1,2,3,4,5,6,7,8,9].map(n => `<span>${n===9?9:''}</span>`).join('')}</div>
-        </div>
-      </div>`;
+/* ---------------------------------------------------------------- board --- */
+
+function renderBoard() {
+  const body = document.getElementById('body');
+  if (!BOARD) {
+    body.innerHTML = `<div class="card"><div class="state-msg">
+      The work board (<code>${esc(BOARD_NAME)}</code>) could not be read${BOARD_ERR ? ` (${esc(BOARD_ERR)})` : ''}.<br><br>
+      It is written by this repo's own <code>automation_sweep.py</code> on a schedule. Until the
+      next successful sweep, this tab shows nothing rather than a stale or invented view.
+    </div></div>`;
+    return;
+  }
+  const board = BOARD;
+  const latest = latestAutomation();
+  const queue = board.queue || {};
+  const needs = board.needs_you || [];
+  const claims = board.claims || {};
+
+  body.innerHTML = `
+    <div class="card">
+      <h2>Is the machine running? <span class="q">— as of ${esc(relTime(board.generated))}</span></h2>
+      <div class="strip" id="strip"></div>
+    </div>
+
+    <div class="card">
+      <h2>Is work getting done? <span class="q">— runs per day, last 30 days</span></h2>
+      <svg class="chart" id="runsChart" viewBox="0 0 1000 220" preserveAspectRatio="xMidYMid meet"></svg>
+      <div class="legend" id="runsLegend"></div>
+    </div>
+
+    <div class="card">
+      <h2>Recent runs <span class="q">— every row opens its issue</span></h2>
+      <div id="recentRuns"></div>
+    </div>
+
+    <div class="card">
+      <h2>What's open? <span class="q">— counts, each linking to its issue list</span></h2>
+      <div id="queueTable"></div>
+    </div>
+
+    <div class="card">
+      <h2>Needs you <span class="q">— blocked-needs-input and needs:human, oldest first</span></h2>
+      <div id="needsYou"></div>
+    </div>
+
+    <div class="card">
+      <h2>Snapshot log <span class="q">— appended history of the automation summary</span></h2>
+      <div class="log" id="logList"></div>
+    </div>
+  `;
+
+  renderStrip(board, latest, claims);
+  renderRunsChart(board);
+  renderRecentRuns(board);
+  renderQueueTable(queue);
+  renderNeedsYou(needs);
+  renderLog(boardLog());
+}
+
+function latestAutomation() {
+  const st = REPO_STATE['Automation'];
+  if (!st || st.status !== 'ok' || !st.entries.length) return null;
+  return st.entries[st.entries.length - 1].automation || null;
+}
+
+function boardLog() {
+  const st = REPO_STATE['Automation'];
+  if (!st || st.status !== 'ok') return [];
+  return st.entries.slice().reverse().filter(e => e.notes).slice(0, 12)
+    .map(e => ({ ts: e.timestamp, note: e.notes }));
+}
+
+function renderStrip(board, latest, claims) {
+  const runs24 = latest ? latest.runs_24h : undefined;
+  const staleN = (claims.stale || []).length;
+  const claimsTotal = claims.total;
+  const ageH = hoursSince(board.generated);
+  const staleSweep = ageH !== null && ageH > 6;
+  const selfRepo = repoByName('Automation') || repoByName(board.repos?.[0]) || null;
+
+  // Every number here drills into its records, per the "no orphan numbers"
+  // rule: a count with no way to ask "why" does not ship. A claim count is the
+  // number of claim FILES, so it links to the claims/ directory — the label
+  // lists can disagree with the files (a repo may hold a lock without the
+  // label), and a claim-file count must not be verified against a label.
+  const claimRepoLinks = (repos, withCount) => repos.sort()
+    .map(r => {
+      const url = claimsDirUrl(r);
+      const text = `${esc(r)}${withCount ? ' ' + esc(claims.held[r]) : ''}`;
+      return url ? `<a href="${esc(url)}" target="_blank" rel="noopener">${text}</a>` : text;
+    }).join(' · ');
+  const heldList = claimRepoLinks(Object.keys(claims.held || {}), true);
+
+  // The per-repo 24h breakdown links each repo to its open issues — where its
+  // run comments live. Runs are not directly listable, but the comments that
+  // record them are, so the number is not a dead end.
+  const breakdown = Object.keys(board.runs_24h_by_repo || {}).sort()
+    .map(r => {
+      const url = repoIssuesUrl(r);
+      const n = board.runs_24h_by_repo[r];
+      return url ? `<a href="${esc(url)}" target="_blank" rel="noopener">${esc(r)} ${esc(n)}</a>`
+                 : `${esc(r)} ${esc(n)}`;
+    }).join(' · ');
+  const staleList = (claims.stale || []).map(s => {
+    const m = /^(.+?) #(\d+)$/.exec(s);
+    return m ? issueLink(m[1], m[2]) : esc(s);
+  }).join(' · ');
+
+  const logHref = selfRepo
+    ? esc(rawUrl(selfRepo, 'status_log.jsonl'))
+    : null;
+
+  // A zero is still a claim about the records, so the stale-claims stat links
+  // to the claim files even when there is nothing stale to show: that is how
+  // the reader verifies the zero rather than taking it on faith. When no repo
+  // has a claims/ mechanism the number is an em dash and the stat is not a
+  // link — there is nothing to drill into.
+  const staleLinks = claimRepoLinks(Object.keys(claims.held || {}), false);
+  const heldRepos = Object.keys(claims.held || {}).sort();
+  // Both claim counts are read from the claim files, so both drill to the
+  // claims/ directory. The individual issues are linked in the mini line; a
+  // count of N must not point at a single issue, which would be its own orphan.
+  const claimsDrill = heldRepos.length ? claimsDirUrl(heldRepos[0]) : null;
+
+  const items = [
+    { lbl: 'Last sweep', val: esc(relTime(board.generated)),
+      href: logHref, title: 'the appended log this summary came from',
+      cls: staleSweep ? 'crit' : '',
+      mini: staleSweep ? 'stale — expected within 6h' : 'fresh' },
+    { lbl: 'Runs (24h)', val: em(runs24), href: '#recentRuns',
+      title: 'the recent-runs table below', cls: '',
+      // A run that touched two repos is one run in the total (deduped by id)
+      // but appears under both repos here, so the parts can sum above the
+      // whole. Say so in the visible text, not only a tooltip: an unexplained
+      // 40 next to parts summing to 44 reads as an arithmetic error.
+      mini: breakdown ? `${breakdown} · some runs span two repos` : '—',
+      miniTitle: 'runs by repo; a run that touched two repos appears under each, '
+               + 'so these can sum above the total' },
+    { lbl: 'Claims held now', val: claimsTotal === undefined ? '—' : esc(claimsTotal),
+      href: claimsDrill, title: 'the claim files behind this count',
+      cls: '', mini: heldList || 'no claim-file mechanism' },
+    { lbl: 'Stale claims', val: claimsTotal === undefined ? '—' : esc(staleN),
+      cls: staleN > 0 ? 'warn' : '',
+      href: claimsDrill, title: 'the claim files this count was read from',
+      mini: staleN ? staleList : (staleLinks || 'no claim-file mechanism') },
+  ];
+  document.getElementById('strip').innerHTML = items.map(i => {
+    const num = i.href
+      ? `<a href="${i.href}"${i.href.startsWith('#') ? '' : ' target="_blank" rel="noopener"'}${i.title ? ` title="${esc(i.title)}"` : ''}>${i.val}</a>`
+      : i.val;
+    const mini = i.miniTitle
+      ? `<span class="mini" title="${esc(i.miniTitle)}">${i.mini}</span>`
+      : `<span class="mini">${i.mini}</span>`;
+    return `<div class="stat"><div class="num ${i.cls}">${num}</div>
+      <div class="lbl">${i.lbl}${mini}</div></div>`;
   }).join('');
 }
 
-function renderStats(latest) {
-  const el = document.getElementById('statGrid');
-  // A field the sweep did not measure renders as an em dash, not as 0.
-  const show = v => (v === undefined || v === null) ? '—' : v;
-  const pct = v => (v === undefined || v === null) ? '—' : (v*100).toFixed(0) + '%';
-  const items = [
-    { lbl: 'Open', val: show(latest.open_total), cls: '' },
-    { lbl: 'Available', val: show(latest.available), cls: '' },
-    { lbl: 'WIP', val: show(latest.wip), cls: '' },
-    { lbl: 'Blocked (awaiting input)', val: show(latest.blocked), cls: latest.blocked > 0 ? 'warn' : '' },
-    { lbl: 'Blocked ratio', val: pct(latest.blocked_ratio),
-      cls: latest.blocked_ratio > 0.4 ? 'crit' : (latest.blocked_ratio > 0.25 ? 'warn' : '') },
-    { lbl: 'Awaiting review', val: show(latest.needs_review), cls: '' },
-    { lbl: 'Cycle time (median, hrs)', val: show(latest.cycle_h), cls: '' },
-    { lbl: 'Stale reversions', val: show(latest.stale), cls: latest.stale > 0 ? 'warn' : '' }
-  ];
-  el.innerHTML = items.map(i => `
-    <div class="stat"><div class="num ${i.cls}">${i.val}</div><div class="lbl">${i.lbl}</div></div>`).join('');
+// A stacked bar per day: one segment per repo. The x-axis is the last 30 days,
+// so a gap in work shows as a short bar, not as a missing point.
+function renderRunsChart(board) {
+  const svg = document.getElementById('runsChart');
+  const byDay = board.runs_by_day || {};
+  const repos = Object.keys(byDay).sort();
+  const days = repos.length ? Object.keys(byDay[repos[0]]) : [];
+  const W = 1000, H = 220, padL = 34, padR = 16, padT = 14, padB = 30;
+  const innerW = W - padL - padR, innerH = H - padT - padB;
+  const totals = days.map(d => repos.reduce((a, r) => a + (byDay[r][d] || 0), 0));
+  const maxN = Math.max(1, ...totals);
+  const bw = days.length ? innerW / days.length : innerW;
+
+  const colors = ['var(--blue)', 'var(--teal)', 'var(--amber)', 'var(--rose)', '#8A7BD8'];
+  const colorFor = r => colors[repos.indexOf(r) % colors.length];
+
+  let bars = '';
+  days.forEach((d, i) => {
+    let y = padT + innerH;
+    repos.forEach(r => {
+      const n = byDay[r][d] || 0;
+      if (!n) return;
+      const h = (n / maxN) * innerH;
+      y -= h;
+      bars += `<rect x="${(padL + i * bw + 1).toFixed(1)}" y="${y.toFixed(1)}"`
+        + ` width="${Math.max(1, bw - 2).toFixed(1)}" height="${h.toFixed(1)}" fill="${colorFor(r)}">`
+        + `<title>${esc(r)} ${esc(d)}: ${esc(n)} run(s)</title></rect>`;
+    });
+  });
+
+  const axis = [0, maxN].map(v =>
+    `<text x="${padL - 6}" y="${(padT + innerH - (v / maxN) * innerH + 4).toFixed(1)}"`
+    + ` font-family="IBM Plex Mono, monospace" font-size="10" fill="var(--ink-dim)"`
+    + ` text-anchor="end">${v}</text>`).join('');
+
+  // Label roughly weekly so dense logs cannot overprint the axis.
+  let ticks = '';
+  days.forEach((d, i) => {
+    if (i % 7 !== 0 && i !== days.length - 1) return;
+    ticks += `<text x="${(padL + i * bw + bw / 2).toFixed(1)}" y="${H - 8}"`
+      + ` font-family="IBM Plex Mono, monospace" font-size="10" fill="var(--ink-dim)"`
+      + ` text-anchor="middle">${esc(d.slice(5))}</text>`;
+  });
+
+  svg.innerHTML = `
+    <line x1="${padL}" y1="${padT}" x2="${W - padR}" y2="${padT}" stroke="var(--line)" />
+    <line x1="${padL}" y1="${padT + innerH}" x2="${W - padR}" y2="${padT + innerH}" stroke="var(--line)" />
+    ${axis}${bars}${ticks}`;
+
+  const noData = !days.length || totals.every(t => t === 0);
+  document.getElementById('runsLegend').innerHTML = noData
+    ? `<div class="item">No runs recorded in the last 30 days.</div>`
+    : repos.map(r => `<div class="item"><span class="swatch" style="background:${colorFor(r)}"></span>${esc(r)}</div>`).join('');
+}
+
+function renderRecentRuns(board) {
+  const runs = (board.recent_runs || []).slice(0, 15);
+  const el = document.getElementById('recentRuns');
+  if (!runs.length) {
+    el.innerHTML = `<div class="state-msg">No runs recorded. A run leaves a public trace only
+      when an agent claims an issue, so an empty list means no work was claimed — not that the
+      scheduler is broken.</div>`;
+    return;
+  }
+  el.innerHTML = `<table><thead><tr>
+      <th>Run</th><th>Repo</th><th>Issue</th><th>Started</th><th>Duration</th><th>Outcome</th>
+    </tr></thead><tbody>` + runs.map(r => {
+    const outcome = r.outcome === 'done'
+      ? '<span class="pill done">done</span>'
+      : '<span class="pill open">no done comment</span>';
+    return `<tr>
+      <td>${esc(r.run_id)}</td>
+      <td>${esc(r.repo)}</td>
+      <td>${r.issue ? issueLink(r.repo, r.issue) : '—'}</td>
+      <td>${esc(relTime(r.start))}</td>
+      <td>${esc(fmtMinutes(r.minutes))}</td>
+      <td>${outcome}</td>
+    </tr>`;
+  }).join('') + `</tbody></table>`;
+}
+
+function renderQueueTable(queue) {
+  const el = document.getElementById('queueTable');
+  const repos = Object.keys(queue).sort();
+  if (!repos.length) {
+    el.innerHTML = `<div class="state-msg">No queue data. The sweep could not read any repo's issues.</div>`;
+    return;
+  }
+  const cell = (repo, n, label) => {
+    const url = issueListUrl(repo, label);
+    return url ? `<a href="${esc(url)}" target="_blank" rel="noopener">${esc(n)}</a>` : esc(n);
+  };
+  el.innerHTML = `<table><thead><tr>
+      <th>Repo</th><th>Available</th><th>Claimed</th><th>Blocked (needs input)</th><th>On hold (audit)</th>
+    </tr></thead><tbody>` + repos.map(repo => {
+    const q = queue[repo];
+    return `<tr>
+      <td>${esc(repo)}</td>
+      <td>${cell(repo, q.available, 'status:available')}</td>
+      <td>${cell(repo, q.claimed, 'status:claimed')}</td>
+      <td>${cell(repo, q.blocked_needs_input, 'status:blocked-needs-input')}</td>
+      <td>${cell(repo, q.on_hold, 'on-hold')}</td>
+    </tr>`;
+  }).join('') + `</tbody></table>
+  <div class="legend"><div class="item">Counts link to the filtered GitHub issue list. On hold is
+    the auditor's promotion queue — the human gate — and is not a "needs input" item.</div></div>`;
+}
+
+function renderNeedsYou(needs) {
+  const el = document.getElementById('needsYou');
+  if (!needs.length) {
+    el.innerHTML = `<div class="state-msg">Nothing is waiting on you.</div>`;
+    return;
+  }
+  el.innerHTML = `<table><thead><tr>
+      <th>Opened</th><th>Issue</th><th>Title</th><th>Labels</th>
+    </tr></thead><tbody>` + needs.map(e => {
+    const labels = (e.labels || []).map(l => `<span class="pill">${esc(l)}</span>`).join(' ');
+    return `<tr>
+      <td>${esc(e.opened || '—')}</td>
+      <td>${issueLink(e.repo, e.number)}</td>
+      <td>${esc(e.title || '')}</td>
+      <td>${labels}</td>
+    </tr>`;
+  }).join('') + `</tbody></table>`;
 }
 
 function renderLog(entries) {
   const el = document.getElementById('logList');
+  if (!el) return;
   el.innerHTML = entries.length
     ? entries.map(e => `<div class="entry"><span class="ts">${esc(e.ts)}</span><span>${esc(e.note)}</span></div>`).join('')
     : '<div class="state-msg">No notes logged yet.</div>';
 }
 
-// Automation health. Everything here is derived from public data by
-// automation_sweep.py; failure rate and idle rate are deliberately absent
-// (a failed run dies before it comments, leaving no public trace).
-function renderAutomation(entries) {
-  const latest = entries[entries.length - 1].automation;
-  // Every value here comes from a fetched log, so it is untrusted: escape on
-  // the way into the template. HuB's SECURITY.md names this exact risk.
-  const show = v => (v === undefined || v === null) ? '—' : esc(v);
-  const stale = Number(latest.stale_claims_total) || 0;
+/* ----------------------------------------------------------- repo cards --- */
+
+// A source repo's tab keeps its own log view. It leads with the same queue
+// question the board answers, read from that repo's latest snapshot, so a
+// number there is never orphaned either.
+function renderRepoCard(name, entries) {
+  const latest = entries[entries.length - 1];
+  const repo = repoByName(name) || {};
+  const flow = latest.flow || {};
+  // The board keys repos by GitHub repo name; match it to this tab's entry.
+  const boardRepo = repo ? Object.keys(BOARD?.queue || {})
+    .find(k => k.toLowerCase() === repo.repo.toLowerCase()) : null;
+  const boardQ = (boardRepo && BOARD.queue[boardRepo]) || null;
+  const log = entries.slice().reverse().filter(e => e.notes).slice(0, 12)
+    .map(e => ({ ts: e.timestamp, note: e.notes }));
+
   const items = [
-    { lbl: 'Runs (24h)', val: show(latest.runs_24h), cls: '' },
-    { lbl: 'Runs (7d)', val: show(latest.runs_7d), cls: '' },
-    { lbl: 'Repos active (24h)', val: show((latest.repos_active_24h || []).length), cls: '' },
-    { lbl: 'Claims held', val: show(latest.claims_total), cls: '' },
-    { lbl: 'Stale claims', val: show(latest.stale_claims_total), cls: stale > 0 ? 'crit' : '' },
-    { lbl: 'Last run', val: latest.last_run ? esc(String(latest.last_run).slice(5, 16).replace('T', ' ')) : '—', cls: '' }
+    { lbl: 'Open', val: em(flow.open_total), href: repoIssuesUrl(name),
+      title: 'this repo\'s open issues' },
+    { lbl: 'Available', val: em(flow.available),
+      href: issueListUrl(name, 'status:available'), title: 'issues labelled status:available' },
+    { lbl: 'Claimed (label)', val: em(flow.wip),
+      href: issueListUrl(name, 'status:claimed'),
+      title: 'issues carrying the status:claimed label — the claim files are the real lock' },
+    { lbl: 'Blocked (needs input)', val: em(flow.blocked), cls: flow.blocked > 0 ? 'warn' : '',
+      href: issueListUrl(name, 'status:blocked-needs-input'),
+      title: 'issues labelled status:blocked-needs-input' },
+    { lbl: 'Awaiting review', val: em(flow.needs_review),
+      href: issueListUrlAny(name, ['needs-review', 'review:pending', 'review:confirmed', 'review:flagged']),
+      title: 'needs-review or any review:* label' },
+    { lbl: 'Closed (30d)', val: em(flow.closed_last_30d), href: closedIssuesUrl(name, 30),
+      title: 'issues closed in the last 30 days' },
   ];
 
-  const held = latest.claims_held || {};
-  const heldRows = Object.keys(held).length
-    ? Object.keys(held).sort().map(r =>
-        `<div class="entry"><span class="ts">${esc(r)}</span><span>${esc(held[r])} claim(s) held</span></div>`).join('')
-    : '<div class="state-msg">No claim files found in any repo.</div>';
-
-  const staleList = (latest.stale_claims || []).length
-    ? `<div class="entry"><span class="ts">stale</span><span>${esc(latest.stale_claims.join(', '))} — issue closed, lock not released</span></div>`
+  // Where the board knows the same repo, prefer its live queue counts and say
+  // so, since the label count and the claim-file count disagree by design. Each
+  // count links to its own records — the claim count to the claims/ files.
+  const boardLine = boardQ
+    ? `<div class="legend"><div class="item">Live queue from the work board:
+        ${statLink(boardQ.available, issueListUrl(name, 'status:available'), 'available')} ·
+        ${statLink(boardQ.claimed, issueListUrl(name, 'status:claimed'), 'claimed')} ·
+        ${statLink(boardQ.blocked_needs_input, issueListUrl(name, 'status:blocked-needs-input'), 'blocked-needs-input')} ·
+        ${statLink(boardQ.on_hold, issueListUrl(name, 'on-hold'), 'on hold')}</div></div>`
     : '';
 
-  // Runs per snapshot, so a gap in the bars is visible as a gap in activity.
-  const hist = entries.slice(-30).map(e => ({
-    ts: (e.timestamp || '').slice(5, 10),
-    n: (e.automation || {}).runs_24h
-  }));
-  const W = 960, H = 180, padL = 40, padR = 20, padT = 16, padB = 28;
-  const innerW = W - padL - padR, innerH = H - padT - padB;
-  const maxN = Math.max(1, ...hist.map(h => h.n || 0));
-  const bw = hist.length ? innerW / hist.length : innerW;
-  const bars = hist.map((h, i) => {
-    if (h.n === undefined || h.n === null) return '';
-    const bh = (h.n / maxN) * innerH;
-    return `<rect x="${(padL + i * bw + 1).toFixed(1)}" y="${(padT + innerH - bh).toFixed(1)}"
-      width="${Math.max(1, bw - 2).toFixed(1)}" height="${bh.toFixed(1)}" fill="var(--blue)" />`;
-  }).join('');
-  const axis = [0, maxN].map((v, i) =>
-    `<text x="${padL - 6}" y="${(padT + innerH - (v / maxN) * innerH + 4).toFixed(1)}"
-      font-family="IBM Plex Mono, monospace" font-size="10" fill="var(--ink-dim)" text-anchor="end">${v}</text>`).join('');
-  const tick = hist.length ? `<text x="${(padL + innerW).toFixed(1)}" y="${H - 8}"
-      font-family="IBM Plex Mono, monospace" font-size="10" fill="var(--ink-dim)" text-anchor="end">${esc(hist[hist.length - 1].ts)}</text>` : '';
-
   document.getElementById('body').innerHTML = `
-    <div class="grid">
-      <div class="card"><h2>Automation — latest sweep</h2><div class="stat-grid" id="statGrid"></div></div>
-      <div class="card"><h2>Claims held (real lock)</h2><div class="log">${heldRows}${staleList}</div></div>
+    <div class="card">
+      <h2>${esc(name)} — latest sweep <span class="q">— ${esc(repo.repo)}@${esc(repo.branch)}</span></h2>
+      <div class="strip" id="strip"></div>
+      ${boardLine}
     </div>
-    <div class="card trend-card">
-      <h2>Runs per 24h, by sweep</h2>
-      <svg class="trend-svg" viewBox="0 0 ${W} ${H}" preserveAspectRatio="xMidYMid meet">
-        ${axis}${bars}${tick}
-      </svg>
-      <div class="legend"><div class="item"><span class="swatch" style="background:var(--blue)"></span>distinct run-ids seen in public comments</div></div>
+    <div class="card">
+      <h2>Repo</h2>
+      <div class="legend">
+        <div class="item"><a href="https://github.com/${esc(repo.owner)}/${esc(repo.repo)}" target="_blank" rel="noopener">repository</a></div>
+        <div class="item"><a href="https://github.com/${esc(repo.owner)}/${esc(repo.repo)}#readme" target="_blank" rel="noopener">README</a></div>
+        <div class="item"><a href="${esc(issueListUrl(name, 'status:available'))}" target="_blank" rel="noopener">available issues</a></div>
+        <div class="item"><a href="${esc(issueListUrl(name, 'status:blocked-needs-input'))}" target="_blank" rel="noopener">blocked issues</a></div>
+      </div>
     </div>
-    <div class="card"><h2>Snapshot log</h2><div class="log" id="logList"></div></div>
+    <div class="card">
+      <h2>Snapshot log <span class="q">— newest first</span></h2>
+      <div class="log" id="logList"></div>
+    </div>
   `;
-
-  document.getElementById('statGrid').innerHTML = items.map(i => `
-    <div class="stat"><div class="num ${i.cls}">${i.val}</div><div class="lbl">${i.lbl}</div></div>`).join('');
-  renderLog(entries.slice().reverse().filter(e => e.notes).slice(0, 12)
-    .map(e => ({ ts: e.timestamp, note: e.notes })));
+  document.getElementById('strip').innerHTML = items.map(i => {
+    const measured = i.val !== '—';
+    const num = measured && i.href
+      ? `<a href="${esc(i.href)}" target="_blank" rel="noopener"${i.title ? ` title="${esc(i.title)}"` : ''}>${i.val}</a>`
+      : i.val;
+    return `<div class="stat"><div class="num ${i.cls || ''}">${num}</div>
+      <div class="lbl">${i.lbl}</div></div>`;
+  }).join('');
+  renderLog(log);
 }
 
-function renderTrend(sweeps) {
-  const svg = document.getElementById('trendSvg');
-  const W = 960, H = 220, padL = 40, padR = 40, padT = 16, padB = 28;
-  const innerW = W - padL - padR, innerH = H - padT - padB;
-  const n = sweeps.length;
-  const x = i => n <= 1 ? padL + innerW/2 : padL + (innerW * i) / (n - 1);
-  const yTrl = v => padT + innerH - (v / 9) * innerH;
-  const yRatio = v => padT + innerH - v * innerH;
+/* --------------------------------------------------------------- theme ---- */
 
-  let gridLines = '';
-  for (let g = 0; g <= 4; g++) {
-    const yy = padT + (innerH * g) / 4;
-    gridLines += `<line x1="${padL}" y1="${yy}" x2="${W-padR}" y2="${yy}" stroke="var(--line)" stroke-width="1" />`;
-  }
-
-  // Build a path from only the defined points, so a sweep that did not measure
-  // a field leaves a gap rather than a plotted zero.
-  const path = (vals, yfn) => {
-    let d = '', pen = false;
-    vals.forEach((v, i) => {
-      if (v === undefined || v === null || Number.isNaN(v)) { pen = false; return; }
-      d += `${pen ? 'L' : 'M'} ${x(i).toFixed(1)} ${yfn(v).toFixed(1)} `;
-      pen = true;
-    });
-    return d.trim();
-  };
-  const dots = (vals, yfn, color) => vals.map((v,i) =>
-    (v === undefined || v === null || Number.isNaN(v)) ? '' :
-    `<circle cx="${x(i).toFixed(1)}" cy="${yfn(v).toFixed(1)}" r="3" fill="${color}" />`).join('');
-  // One label per sweep cannot fit: points sit ~22px apart on a dense log
-  // (Rubato holds 41 sweeps across 10 days), while an MM-DD label is ~30px
-  // wide, so every label overprinted its neighbour. Label one point per
-  // distinct day and drop any that would still collide — the line and dots
-  // keep plotting every sweep, only the axis text thins out.
-  const LABEL_PX = 6;          // IBM Plex Mono advance width at font-size 10
-  const LABEL_GAP = 6;         // minimum gap between adjacent labels
-  const labels = (() => {
-    const out = [];
-    let lastRight = -Infinity;
-    let prevDay = null;
-    sweeps.forEach((s, i) => {
-      if (s.ts === prevDay) return;
-      prevDay = s.ts;
-      const cx = x(i), half = (s.ts.length * LABEL_PX) / 2;
-      if (cx - half < lastRight + LABEL_GAP) return;
-      out.push(`<text x="${cx.toFixed(1)}" y="${H-8}" font-family="IBM Plex Mono, monospace" font-size="10" fill="var(--ink-dim)" text-anchor="middle">${esc(s.ts)}</text>`);
-      lastRight = cx + half;
-    });
-    return out.join('');
-  })();
-
-  // blocked_ratio changed definition at contract v1 (a sweep whose flow carries
-  // `janitorial` is v1). Plotting both definitions as one line would imply a
-  // trend that did not happen, so mark the boundary and split the line.
-  const firstV1 = sweeps.findIndex(s => s.janitorial !== undefined);
-  let splitMarker = '', ratioPath;
-  const ratioVals = sweeps.map(s => s.blocked_ratio);
-  if (firstV1 > 0) {
-    splitMarker = `<line x1="${x(firstV1-0.5).toFixed(1)}" y1="${padT}" x2="${x(firstV1-0.5).toFixed(1)}" y2="${padT+innerH}" stroke="var(--amber)" stroke-width="1" stroke-dasharray="2 3" opacity="0.6" />
-      <text x="${(x(firstV1-0.5)+4).toFixed(1)}" y="${padT+10}" font-family="IBM Plex Mono, monospace" font-size="9" fill="var(--ink-dim)">metric v1</text>`;
-    ratioPath = path(ratioVals.slice(firstV1), yRatio);
-    const before = path(ratioVals.slice(0, firstV1 + 1), yRatio);
-    ratioPath = `<path d="${before}" fill="none" stroke="var(--amber)" stroke-width="2" stroke-dasharray="4 3" opacity="0.35" />
-      <path d="${ratioPath}" fill="none" stroke="var(--amber)" stroke-width="2" stroke-dasharray="4 3" />`;
-  } else {
-    ratioPath = `<path d="${path(ratioVals, yRatio)}" fill="none" stroke="var(--amber)" stroke-width="2" stroke-dasharray="4 3" />`;
-  }
-
-  svg.innerHTML = `
-    ${gridLines}
-    <path d="${path(sweeps.map(s=>s._avgTrl), yTrl)}" fill="none" stroke="var(--blue)" stroke-width="2" />
-    ${dots(sweeps.map(s=>s._avgTrl), yTrl, 'var(--blue)')}
-    ${splitMarker}
-    ${ratioPath}
-    ${dots(ratioVals, yRatio, 'var(--amber)')}
-    ${labels}
-  `;
-}
-
-// theme toggle
 const root = document.documentElement;
 try { const saved = localStorage.getItem('hub-theme'); if (saved) root.setAttribute('data-theme', saved); } catch (e) {}
 document.getElementById('themeToggle').addEventListener('click', () => {

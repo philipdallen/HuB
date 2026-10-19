@@ -41,6 +41,7 @@ import urllib.request
 from pathlib import Path
 
 CONFIG = Path(__file__).resolve().parent.parent / "config.json"
+BOARD = Path(__file__).resolve().parent.parent / "work_board.json"
 REQUIRED = ("name", "owner", "repo", "branch")
 
 API = "https://api.github.com/repos/{owner}/{repo}/git/ref/heads/{branch}"
@@ -129,6 +130,121 @@ def check(entry):
     return True, f"{len(lines)} entries @ {sha[:10]}"
 
 
+def check_board(path):
+    """Validate the committed work_board.json: shape, and the keys the page reads.
+
+    No network: this is a file in this repo, committed by the sweep. CI runs on
+    the pull request that carries it, so a malformed or truncated board is
+    caught before the page renders "could not be read" in production.
+
+    Only the keys the page dereferences without a guard are required. The page
+    reads `board.queue || {}` and `board.needs_you || []`, so those are optional;
+    it reads `board.runs_by_day[...]` and `board.recent_runs` directly, so those
+    must be present and of the right type.
+    """
+    try:
+        data = json.loads(path.read_text())
+    except FileNotFoundError:
+        return False, f"{path.name} does not exist"
+    except json.JSONDecodeError as exc:
+        return False, f"{path.name} is not valid JSON: {exc}"
+
+    if not isinstance(data, dict):
+        return False, f"{path.name} is not a JSON object"
+    if not data.get("generated"):
+        return False, "no 'generated' timestamp"
+
+    by_day = data.get("runs_by_day")
+    if not isinstance(by_day, dict):
+        return False, "'runs_by_day' is not an object"
+    for repo, series in by_day.items():
+        if not isinstance(series, dict) or not series:
+            return False, f"'runs_by_day[{repo}]' is not a non-empty day series"
+        if any(not isinstance(v, int) or isinstance(v, bool) for v in series.values()):
+            return False, f"'runs_by_day[{repo}]' has a non-integer day count"
+
+    runs = data.get("recent_runs")
+    if not isinstance(runs, list):
+        return False, "'recent_runs' is not an array"
+    for r in runs:
+        if not isinstance(r, dict) or not r.get("run_id") or not r.get("repo"):
+            return False, "a recent_runs row is missing run_id/repo"
+        mins = r.get("minutes")
+        # A measured duration is a non-negative number; an unmeasured one is
+        # null. A zero is legitimate here (a run can finish in under a minute),
+        # so the rule is duration/outcome agreement, not "reject zero".
+        if mins is not None and (not isinstance(mins, (int, float))
+                                 or isinstance(mins, bool) or mins < 0):
+            return False, f"recent_runs[{r['run_id']}] has a non-numeric duration"
+        if (mins is None) != (r.get("outcome") is None):
+            return False, (f"recent_runs[{r['run_id']}] duration and outcome disagree "
+                           f"(minutes={mins!r}, outcome={r.get('outcome')!r})")
+
+    return True, f"{len(by_day)} repo series, {len(runs)} recent runs"
+
+
+def board_self_test():
+    """Prove check_board fails on broken input. Returns a failure count.
+
+    Offline by design: each case writes a temp board, so the check is exercised
+    without the network. Every case is a mutation a real bug could produce — a
+    truncated write, a lost key, a zero smuggled in for an unmeasured duration.
+    """
+    import tempfile
+
+    good = {
+        "generated": "2026-10-19T11:44:07Z",
+        "runs_by_day": {"ephapse": {"2026-10-18": 2, "2026-10-19": 1}},
+        "recent_runs": [
+            {"run_id": "20261019-1010-abcd", "repo": "ephapse",
+             "issue": 39, "minutes": 12.5, "outcome": "done"},
+            {"run_id": "20261019-0900-efgh", "repo": "Maith",
+             "issue": 12, "minutes": None, "outcome": None},
+        ],
+    }
+
+    def mutate(fn):
+        import copy
+        d = copy.deepcopy(good)
+        fn(d)
+        return d
+
+    cases = [
+        ("well-formed board", good, True),
+        ("not an object", [1, 2, 3], False),
+        ("no generated timestamp", mutate(lambda d: d.pop("generated")), False),
+        ("runs_by_day not an object", mutate(lambda d: d.update(runs_by_day=[])), False),
+        ("empty day series", mutate(lambda d: d["runs_by_day"].update(ephapse={})), False),
+        ("non-integer day count", mutate(lambda d: d["runs_by_day"]["ephapse"].update({"2026-10-18": "2"})), False),
+        ("recent_runs not an array", mutate(lambda d: d.update(recent_runs={})), False),
+        ("run row missing repo", mutate(lambda d: d["recent_runs"][0].pop("repo")), False),
+        ("unmeasured duration smuggled as 0", mutate(lambda d: d["recent_runs"][1].update(minutes=0)), False),
+        ("measured run with a null duration", mutate(lambda d: d["recent_runs"][0].update(minutes=None)), False),
+        ("negative duration", mutate(lambda d: d["recent_runs"][0].update(minutes=-1)), False),
+        ("non-numeric duration", mutate(lambda d: d["recent_runs"][0].update(minutes="12")), False),
+        ("legitimate zero-minute duration passes", mutate(lambda d: d["recent_runs"][0].update(minutes=0)), True),
+    ]
+
+    failures = 0
+    with tempfile.TemporaryDirectory() as td:
+        path = Path(td) / "work_board.json"
+        for label, data, must_pass in cases:
+            path.write_text(json.dumps(data))
+            ok, detail = check_board(path)
+            mark = "ok  " if ok == must_pass else "BAD "
+            print(f"  [{mark}] board: {label:44} -> {'pass' if ok else 'FAIL'} ({detail})")
+            if ok != must_pass:
+                failures += 1
+
+    # A board that is missing entirely must fail, not crash.
+    ok, _ = check_board(Path("/nonexistent/work_board.json"))
+    mark = "ok  " if ok is False else "BAD "
+    print(f"  [{mark}] board: missing file{' ' * 31} -> {'pass' if ok else 'FAIL'}")
+    if ok is not False:
+        failures += 1
+    return failures
+
+
 # --- self-test -------------------------------------------------------------
 # Per this repo's own rule, a check is not trusted until it can be shown to
 # fail on deliberately broken input. The regression this guards is specific:
@@ -190,7 +306,13 @@ def self_test():
     if failures:
         print(f"\nSELF-TEST FAILED: {len(failures)} case(s) did not behave as required: {failures}")
         return 1
-    print(f"\nSELF-TEST OK: {len(cases)}/{len(cases)} cases behave as required")
+
+    board_failures = board_self_test()
+    if board_failures:
+        print(f"\nSELF-TEST FAILED: {board_failures} board case(s) did not behave as required")
+        return 1
+    print(f"\nSELF-TEST OK: {len(cases)}/{len(cases)} cases behave as required "
+          f"(+ board checks)")
     return 0
 
 
@@ -211,6 +333,14 @@ def main():
     print(f"\n{len(repos) - failed}/{len(repos)} tracked repos resolve")
     if failed:
         print("FAIL: at least one tracked repo does not resolve")
+        sys.exit(1)
+
+    # The board is a core data file the page fetches; validate it too.
+    ok, detail = check_board(BOARD)
+    status = "ok  " if ok else "FAIL"
+    print(f"  [{status}] work_board.json              {detail}")
+    if not ok:
+        print("FAIL: work_board.json is malformed")
         sys.exit(1)
 
 

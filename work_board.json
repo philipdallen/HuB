@@ -1,0 +1,721 @@
+{
+  "agent_minutes_by_day": {
+    "2026-09-20": 0.0,
+    "2026-09-21": 0.0,
+    "2026-09-22": 330.3,
+    "2026-09-23": 152.1,
+    "2026-09-24": 21.7,
+    "2026-09-25": 49.3,
+    "2026-09-26": 28.6,
+    "2026-09-27": 2.8,
+    "2026-09-28": 5.9,
+    "2026-09-29": 44.2,
+    "2026-09-30": 122.7,
+    "2026-10-01": 32.3,
+    "2026-10-02": 18.2,
+    "2026-10-03": 21.2,
+    "2026-10-04": 251.9,
+    "2026-10-05": 8.8,
+    "2026-10-06": 1.2,
+    "2026-10-07": 27.4,
+    "2026-10-08": 21.3,
+    "2026-10-09": 57.7,
+    "2026-10-10": 1.7,
+    "2026-10-11": 29.5,
+    "2026-10-12": 9.0,
+    "2026-10-13": 20.4,
+    "2026-10-14": 20.1,
+    "2026-10-15": 66.2,
+    "2026-10-16": 12.4,
+    "2026-10-17": 32.9,
+    "2026-10-18": 300.9,
+    "2026-10-19": 312.3
+  },
+  "claims": {
+    "held": {
+      "ephapse": 1
+    },
+    "total": 1
+  },
+  "generated": "2026-10-19T11:44:07Z",
+  "needs_you": [
+    {
+      "labels": [
+        "status:blocked-needs-input"
+      ],
+      "number": 211,
+      "opened": "2026-08-24",
+      "repo": "rubato",
+      "title": "E3 \u2014 The recording"
+    },
+    {
+      "labels": [
+        "priority:high",
+        "status:blocked-needs-input"
+      ],
+      "number": 18,
+      "opened": "2026-09-06",
+      "repo": "PleaNP",
+      "title": "BGS separating-oracle path: decide the machine family + canonical decode (consolidates #23/#156)"
+    },
+    {
+      "labels": [
+        "priority:high",
+        "status:blocked-needs-input"
+      ],
+      "number": 27,
+      "opened": "2026-09-07",
+      "repo": "PleaNP",
+      "title": "Rendering campaign: U_B in NP^B \u2014 four substrate-direction options + lens-per-slot diversity (review design)"
+    },
+    {
+      "labels": [
+        "needs-gate",
+        "priority:high",
+        "status:blocked-needs-input"
+      ],
+      "number": 63,
+      "opened": "2026-09-12",
+      "repo": "PleaNP",
+      "title": "Lean 4 toolchain for unattended PleaNP proof runs: provision it, or declare Lean proof work out of scope"
+    },
+    {
+      "labels": [
+        "priority:high",
+        "status:blocked-needs-input"
+      ],
+      "number": 77,
+      "opened": "2026-09-12",
+      "repo": "PleaNP",
+      "title": "Rung 6 Anchor Object: search-to-decision gap lemma (self-reducibility + Hutter wrapper)"
+    },
+    {
+      "labels": [
+        "status:blocked-needs-input"
+      ],
+      "number": 78,
+      "opened": "2026-09-12",
+      "repo": "PleaNP",
+      "title": "Rung 6 Anchor Object: Levin universal search + P_eq_NP_iff as #eval-able term"
+    },
+    {
+      "labels": [
+        "status:blocked-needs-input"
+      ],
+      "number": 79,
+      "opened": "2026-09-12",
+      "repo": "PleaNP",
+      "title": "Rung 6 Anchor Object: P/NP model-equivalence anchor across upstream formalizations"
+    },
+    {
+      "labels": [
+        "enhancement",
+        "status:blocked-needs-input"
+      ],
+      "number": 26,
+      "opened": "2026-09-15",
+      "repo": "Maith",
+      "title": "Axiom-discovery: build the circuit-complexity transfer-target list (corpus plan Part 2)"
+    },
+    {
+      "labels": [
+        "enhancement",
+        "status:blocked-needs-input"
+      ],
+      "number": 30,
+      "opened": "2026-09-15",
+      "repo": "Maith",
+      "title": "Axiom-discovery: run the first candidate batch and log all outcomes"
+    },
+    {
+      "labels": [
+        "enhancement",
+        "status:blocked-needs-input"
+      ],
+      "number": 31,
+      "opened": "2026-09-15",
+      "repo": "Maith",
+      "title": "Axiom-discovery: conservativity/compression corpus (BLOCKED on upstream PleaNP.Circuits)"
+    },
+    {
+      "labels": [
+        "enhancement",
+        "status:blocked-needs-input"
+      ],
+      "number": 34,
+      "opened": "2026-09-16",
+      "repo": "Maith",
+      "title": "Gate 6: adversarial significance check via independent external models"
+    },
+    {
+      "labels": [
+        "kind:decision",
+        "methodology",
+        "needs-review",
+        "status:blocked-needs-input"
+      ],
+      "number": 17,
+      "opened": "2026-09-18",
+      "repo": "ephapse",
+      "title": "Specify the tier-1 detector-validation harness contract (scoping only)"
+    },
+    {
+      "labels": [
+        "kind:decision",
+        "methodology",
+        "needs-review",
+        "status:blocked-needs-input"
+      ],
+      "number": 18,
+      "opened": "2026-09-18",
+      "repo": "ephapse",
+      "title": "Create the prior-art alignment record and populate it for existing results"
+    },
+    {
+      "labels": [
+        "kind:decision",
+        "needs-review",
+        "status:blocked-needs-input"
+      ],
+      "number": 21,
+      "opened": "2026-09-19",
+      "repo": "ephapse",
+      "title": "Reconcile requirements.txt with the pinning gate (numpy exception)"
+    },
+    {
+      "labels": [
+        "kind:gap",
+        "methodology",
+        "needs-review",
+        "status:blocked-needs-input"
+      ],
+      "number": 23,
+      "opened": "2026-09-19",
+      "repo": "ephapse",
+      "title": "Gap: detector contract registry (frozen params as a machine-readable source of truth)"
+    },
+    {
+      "labels": [
+        "infrastructure",
+        "kind:defect",
+        "needs-review",
+        "status:blocked-needs-input"
+      ],
+      "number": 36,
+      "opened": "2026-09-19",
+      "repo": "ephapse",
+      "title": "The claim lock only covers sessions that use it: label/file divergence, and claim.py misreports a dead credential as a lost race"
+    },
+    {
+      "labels": [
+        "documentation",
+        "portfolio-ops",
+        "status:blocked-needs-input"
+      ],
+      "number": 57,
+      "opened": "2026-09-20",
+      "repo": "Maith",
+      "title": "Record model revision and corpus hash for every reported figure in RUN_REGISTRY"
+    },
+    {
+      "labels": [
+        "kind:protocol",
+        "methodology",
+        "needs-review",
+        "status:blocked-needs-input"
+      ],
+      "number": 14,
+      "opened": "2026-09-25",
+      "repo": "HuB",
+      "title": "process: portfolio throughput is now bounded by human promotion latency (22 on-hold, 0 available)"
+    },
+    {
+      "labels": [
+        "bug",
+        "kind:gate",
+        "needs-review",
+        "priority:high",
+        "status:blocked-needs-input"
+      ],
+      "number": 162,
+      "opened": "2026-09-25",
+      "repo": "PleaNP",
+      "title": "ci: Gate-REVIEW register drift fails the machine-check \u2014 25/25 consecutive red CI runs"
+    },
+    {
+      "labels": [
+        "kind:defect",
+        "methodology",
+        "needs:human",
+        "status:blocked-needs-input"
+      ],
+      "number": 102,
+      "opened": "2026-10-02",
+      "repo": "ephapse",
+      "title": "DEC-043 is cited by #95 but does not exist \u2014 the pilot's first task violates its own directive-first rule"
+    },
+    {
+      "labels": [
+        "kind:gap",
+        "status:blocked-needs-input"
+      ],
+      "number": 397,
+      "opened": "2026-10-09",
+      "repo": "rubato",
+      "title": "Split(#382)2/3 \u2014 wire the sfizz/SFZ primary renderer tier (fallback preserved, tier selectable)"
+    },
+    {
+      "labels": [
+        "kind:gap",
+        "status:blocked-needs-input"
+      ],
+      "number": 398,
+      "opened": "2026-10-09",
+      "repo": "rubato",
+      "title": "Split(#382)3/3 \u2014 same-mockup portability A/B and the written H3 finding"
+    },
+    {
+      "labels": [
+        "kind:repair",
+        "status:blocked-needs-input"
+      ],
+      "number": 136,
+      "opened": "2026-10-18",
+      "repo": "ephapse",
+      "title": "Reconcile shared-trio divergence (auditor.py security fix vs byte-identical rule)"
+    },
+    {
+      "labels": [
+        "kind:defect",
+        "status:blocked-needs-input"
+      ],
+      "number": 205,
+      "opened": "2026-10-19",
+      "repo": "PleaNP",
+      "title": "DiagonalAssembly.lean fails to build (sorry-scaffold); excluded from #200 CI list"
+    },
+    {
+      "labels": [
+        "kind:experiment",
+        "status:blocked-needs-input"
+      ],
+      "number": 153,
+      "opened": "2026-10-19",
+      "repo": "ephapse",
+      "title": "Rung-3 red-team step 3: execute the pre-registered variation grid (all cells reported)"
+    },
+    {
+      "labels": [
+        "kind:experiment",
+        "status:blocked-needs-input"
+      ],
+      "number": 154,
+      "opened": "2026-10-19",
+      "repo": "ephapse",
+      "title": "Rung-3 red-team step 4: red-team verdict + bias audit, recorded"
+    },
+    {
+      "labels": [
+        "kind:hygiene",
+        "status:blocked-needs-input"
+      ],
+      "number": 415,
+      "opened": "2026-10-19",
+      "repo": "rubato",
+      "title": "docs: reconcile the branch/PR model across AGENTS.md and TASK_WORKFLOW.md"
+    }
+  ],
+  "queue": {
+    "HuB": {
+      "available": 3,
+      "available_issues": [
+        13,
+        19,
+        21
+      ],
+      "blocked_issues": [
+        14
+      ],
+      "blocked_needs_input": 1,
+      "claimed": 0,
+      "on_hold": 0
+    },
+    "Maith": {
+      "available": 0,
+      "available_issues": [],
+      "blocked_issues": [
+        26,
+        30,
+        31,
+        34,
+        57
+      ],
+      "blocked_needs_input": 5,
+      "claimed": 0,
+      "on_hold": 10
+    },
+    "PleaNP": {
+      "available": 0,
+      "available_issues": [],
+      "blocked_issues": [
+        18,
+        27,
+        63,
+        77,
+        78,
+        79,
+        162,
+        205
+      ],
+      "blocked_needs_input": 8,
+      "claimed": 1,
+      "claimed_issues": [
+        {
+          "claimed_at": "2026-10-19T10:01:00Z",
+          "number": 200
+        }
+      ],
+      "on_hold": 10
+    },
+    "ephapse": {
+      "available": 0,
+      "available_issues": [],
+      "blocked_issues": [
+        17,
+        18,
+        21,
+        23,
+        36,
+        102,
+        136,
+        153,
+        154
+      ],
+      "blocked_needs_input": 9,
+      "claimed": 1,
+      "claimed_issues": [
+        {
+          "number": 152
+        }
+      ],
+      "on_hold": 10
+    },
+    "rubato": {
+      "available": 0,
+      "available_issues": [],
+      "blocked_issues": [
+        211,
+        397,
+        398,
+        415
+      ],
+      "blocked_needs_input": 4,
+      "claimed": 0,
+      "on_hold": 31
+    }
+  },
+  "recent_runs": [
+    {
+      "issue": 152,
+      "minutes": null,
+      "outcome": null,
+      "repo": "ephapse",
+      "run_id": "20261019-1120-eph2",
+      "start": "2026-10-19T11:20:00Z"
+    },
+    {
+      "issue": 152,
+      "minutes": 24.3,
+      "outcome": "done",
+      "repo": "ephapse",
+      "run_id": "20261019-1040-p9x2",
+      "start": "2026-10-19T10:40:00Z"
+    },
+    {
+      "issue": 150,
+      "minutes": 19.0,
+      "outcome": "done",
+      "repo": "ephapse",
+      "run_id": "20261019-1020-xvhw",
+      "start": "2026-10-19T10:20:00Z"
+    },
+    {
+      "issue": 200,
+      "minutes": null,
+      "outcome": null,
+      "repo": "PleaNP",
+      "run_id": "20261019-1001-et9n",
+      "start": "2026-10-19T10:01:00Z"
+    },
+    {
+      "issue": 415,
+      "minutes": 63.5,
+      "outcome": "done",
+      "repo": "rubato",
+      "run_id": "20261019-0841-20ys",
+      "start": "2026-10-19T08:41:00Z"
+    },
+    {
+      "issue": 200,
+      "minutes": null,
+      "outcome": null,
+      "repo": "PleaNP",
+      "run_id": "20261019-0802-4t8s",
+      "start": "2026-10-19T08:02:00Z"
+    },
+    {
+      "issue": 418,
+      "minutes": 11.2,
+      "outcome": "done",
+      "repo": "rubato",
+      "run_id": "20261019-0741-2g2w",
+      "start": "2026-10-19T07:41:00Z"
+    },
+    {
+      "issue": 420,
+      "minutes": 8.2,
+      "outcome": "done",
+      "repo": "rubato",
+      "run_id": "20261019-0722-jptg",
+      "start": "2026-10-19T07:22:00Z"
+    },
+    {
+      "issue": 419,
+      "minutes": 14.0,
+      "outcome": "done",
+      "repo": "rubato",
+      "run_id": "20261019-0702-j7l2",
+      "start": "2026-10-19T07:02:00Z"
+    },
+    {
+      "issue": 416,
+      "minutes": 21.5,
+      "outcome": "done",
+      "repo": "rubato",
+      "run_id": "20261019-0641-xxdu",
+      "start": "2026-10-19T06:41:00Z"
+    },
+    {
+      "issue": 413,
+      "minutes": 4.8,
+      "outcome": "done",
+      "repo": "rubato",
+      "run_id": "20261019-0621-pamv",
+      "start": "2026-10-19T06:21:00Z"
+    },
+    {
+      "issue": 202,
+      "minutes": 18.6,
+      "outcome": "done",
+      "repo": "PleaNP",
+      "run_id": "20261019-0602-aj0n",
+      "start": "2026-10-19T06:02:00Z"
+    },
+    {
+      "issue": 414,
+      "minutes": 5.1,
+      "outcome": "done",
+      "repo": "rubato",
+      "run_id": "20261019-0541-6y5m",
+      "start": "2026-10-19T05:41:00Z"
+    },
+    {
+      "issue": 145,
+      "minutes": 17.8,
+      "outcome": "done",
+      "repo": "ephapse",
+      "run_id": "20261019-0501-ccdw",
+      "start": "2026-10-19T05:01:00Z"
+    },
+    {
+      "issue": 201,
+      "minutes": 19.8,
+      "outcome": "done",
+      "repo": "PleaNP",
+      "run_id": "20261019-0441-3ynu",
+      "start": "2026-10-19T04:41:00Z"
+    },
+    {
+      "issue": 98,
+      "minutes": 8.5,
+      "outcome": "done",
+      "repo": "Maith",
+      "run_id": "20261019-0421-edww",
+      "start": "2026-10-19T04:21:00Z"
+    },
+    {
+      "issue": 97,
+      "minutes": null,
+      "outcome": null,
+      "repo": "Maith",
+      "run_id": "20261019-0401-lxga",
+      "start": "2026-10-19T04:01:00Z"
+    },
+    {
+      "issue": 100,
+      "minutes": 3.1,
+      "outcome": "done",
+      "repo": "Maith",
+      "run_id": "20261019-0344-jcfk",
+      "start": "2026-10-19T03:44:00Z"
+    },
+    {
+      "issue": 149,
+      "minutes": 7.9,
+      "outcome": "done",
+      "repo": "ephapse",
+      "run_id": "20261019-0321-n4sd",
+      "start": "2026-10-19T03:21:00Z"
+    },
+    {
+      "issue": 148,
+      "minutes": 4.5,
+      "outcome": "done",
+      "repo": "ephapse",
+      "run_id": "20261019-0301-7xkl",
+      "start": "2026-10-19T03:01:00Z"
+    }
+  ],
+  "repos": [
+    "Maith",
+    "PleaNP",
+    "ephapse",
+    "rubato"
+  ],
+  "runs_24h_by_repo": {
+    "Maith": 10,
+    "PleaNP": 7,
+    "ephapse": 15,
+    "rubato": 12
+  },
+  "runs_by_day": {
+    "Maith": {
+      "2026-09-20": 0,
+      "2026-09-21": 0,
+      "2026-09-22": 1,
+      "2026-09-23": 8,
+      "2026-09-24": 9,
+      "2026-09-25": 10,
+      "2026-09-26": 7,
+      "2026-09-27": 5,
+      "2026-09-28": 7,
+      "2026-09-29": 13,
+      "2026-09-30": 11,
+      "2026-10-01": 8,
+      "2026-10-02": 9,
+      "2026-10-03": 6,
+      "2026-10-04": 6,
+      "2026-10-05": 14,
+      "2026-10-06": 6,
+      "2026-10-07": 5,
+      "2026-10-08": 8,
+      "2026-10-09": 7,
+      "2026-10-10": 8,
+      "2026-10-11": 3,
+      "2026-10-12": 9,
+      "2026-10-13": 5,
+      "2026-10-14": 1,
+      "2026-10-15": 7,
+      "2026-10-16": 3,
+      "2026-10-17": 4,
+      "2026-10-18": 8,
+      "2026-10-19": 4
+    },
+    "PleaNP": {
+      "2026-09-20": 0,
+      "2026-09-21": 0,
+      "2026-09-22": 19,
+      "2026-09-23": 8,
+      "2026-09-24": 5,
+      "2026-09-25": 2,
+      "2026-09-26": 5,
+      "2026-09-27": 0,
+      "2026-09-28": 4,
+      "2026-09-29": 6,
+      "2026-09-30": 4,
+      "2026-10-01": 1,
+      "2026-10-02": 0,
+      "2026-10-03": 0,
+      "2026-10-04": 0,
+      "2026-10-05": 0,
+      "2026-10-06": 0,
+      "2026-10-07": 0,
+      "2026-10-08": 0,
+      "2026-10-09": 0,
+      "2026-10-10": 0,
+      "2026-10-11": 1,
+      "2026-10-12": 0,
+      "2026-10-13": 0,
+      "2026-10-14": 0,
+      "2026-10-15": 0,
+      "2026-10-16": 0,
+      "2026-10-17": 4,
+      "2026-10-18": 0,
+      "2026-10-19": 7
+    },
+    "ephapse": {
+      "2026-09-20": 0,
+      "2026-09-21": 1,
+      "2026-09-22": 30,
+      "2026-09-23": 14,
+      "2026-09-24": 0,
+      "2026-09-25": 0,
+      "2026-09-26": 0,
+      "2026-09-27": 0,
+      "2026-09-28": 2,
+      "2026-09-29": 0,
+      "2026-09-30": 9,
+      "2026-10-01": 1,
+      "2026-10-02": 0,
+      "2026-10-03": 0,
+      "2026-10-04": 1,
+      "2026-10-05": 0,
+      "2026-10-06": 0,
+      "2026-10-07": 2,
+      "2026-10-08": 3,
+      "2026-10-09": 0,
+      "2026-10-10": 0,
+      "2026-10-11": 0,
+      "2026-10-12": 3,
+      "2026-10-13": 3,
+      "2026-10-14": 3,
+      "2026-10-15": 3,
+      "2026-10-16": 2,
+      "2026-10-17": 0,
+      "2026-10-18": 13,
+      "2026-10-19": 10
+    },
+    "rubato": {
+      "2026-09-20": 0,
+      "2026-09-21": 0,
+      "2026-09-22": 4,
+      "2026-09-23": 12,
+      "2026-09-24": 12,
+      "2026-09-25": 14,
+      "2026-09-26": 7,
+      "2026-09-27": 5,
+      "2026-09-28": 9,
+      "2026-09-29": 13,
+      "2026-09-30": 11,
+      "2026-10-01": 9,
+      "2026-10-02": 12,
+      "2026-10-03": 12,
+      "2026-10-04": 12,
+      "2026-10-05": 14,
+      "2026-10-06": 10,
+      "2026-10-07": 8,
+      "2026-10-08": 10,
+      "2026-10-09": 18,
+      "2026-10-10": 12,
+      "2026-10-11": 8,
+      "2026-10-12": 10,
+      "2026-10-13": 8,
+      "2026-10-14": 8,
+      "2026-10-15": 10,
+      "2026-10-16": 6,
+      "2026-10-17": 9,
+      "2026-10-18": 8,
+      "2026-10-19": 8
+    }
+  }
+}
