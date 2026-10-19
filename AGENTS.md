@@ -103,3 +103,26 @@ Reads of public repos work fully unauthenticated, so `automation_sweep.py
 --no-token` and `validate_config.py` run without any token.
 
 Full mechanism and evidence: `portfolio-ops/ACCESS_AND_IDENTITIES.md`.
+
+## Live-site review notes
+
+Things that cost time when reviewing the deployed board:
+
+- **The GitHub Pages CDN lags the raw CDN.** After a merge or a sweep commit,
+  `https://philipdallen.github.io/HuB/` can keep serving the previous
+  `index.html`, and `raw.githubusercontent.com/.../work_board.json` can keep
+  serving the previous board, for minutes after the commit exists. Reload with a
+  fresh `?v=<n>` and poll the raw URL with a cache-buster before concluding a
+  change "did not take". The header strip's "Last sweep ... ago" reading stale
+  right after a sweep is usually this, not a broken sweep.
+- **The cron is best-effort, not 30-minute.** `automation_sweep.yml` asks for
+  `7,37 * * * *`, but GitHub throttles scheduled workflows on a low-activity
+  repo: observed gaps run 2-6h, averaging ~3.8h. The board's "stale — expected
+  within 6h" amber state therefore lights up routinely on a quiet repo. That is
+  the schedule, not a fault. Refresh on demand with
+  `POST .../actions/workflows/automation_sweep.yml/dispatches {"ref":"main"}`.
+- **`work_board.json` is generated data; a test that asserts a claim stat is a
+  link must supply its own claims fixture.** Live `claims` is `{}` whenever no
+  claim is held (a claim is released when work finishes), so a test that reads
+  the committed board and expects a held claim will flake.
+

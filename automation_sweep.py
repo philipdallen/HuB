@@ -91,7 +91,16 @@ SOURCE_REPOS = ("ephapse", "PleaNP", "rubato", "Maith")
 QUEUE_REPOS = SOURCE_REPOS + ("HuB",)
 
 # A run-id is <YYYYMMDD>-<HHMM>-<4 random alphanumerics>, per the contract.
-RUN_RE = re.compile(r"run=(\d{8})-(\d{4})-([a-z0-9]{4})")
+# Real comments reference the id in five shapes, all of which mean the same run:
+#   run=20261019-1502-h3n7    run=`20261019-1502-h3n7`   (bare / Markdown code)
+#   run 20261019-1502-h3n7    run `20261019-1502-h3n7`   (prose, no "=")
+#   _run=20261019-1502-h3n7_                             (Markdown italic)
+# A pattern accepting only the first silently drops the rest — losing the run
+# and its outcome. The lookbehind requires "run" to start a word but allows the
+# Markdown wrappers (`*_); across 30 days of comments the only characters before
+# a match are space, "(", newline, "`", "*", "_" — never a letter or digit, so
+# "rerun=..." cannot match. The id shape itself is too specific for prose.
+RUN_RE = re.compile(r"(?<![A-Za-z0-9])run\s*=?\s*`?(\d{8})-(\d{4})-([a-z0-9]{4})")
 RUN_ID_RE = re.compile(r"(\d{8})-(\d{4})-([a-z0-9]{4})")
 CLAIM_FILE_RE = re.compile(r"(\d+)\.claim")
 # A claim comment opens with "claimed" ("claimed by openhands run=..." or
@@ -619,6 +628,26 @@ def selftest() -> int:
     cases.append(("parse_run dates from the id itself",
                   got is not None and got[1] == dt.datetime(2026, 9, 23, 5, 23, tzinfo=dt.timezone.utc)))
     cases.append(("parse_run ignores text without an id", parse_run("no run id here") is None))
+    # Real comments reference an id in five shapes; all five are the same run.
+    # A pattern accepting only the bare "=" form drops the rest and loses the
+    # run and its outcome — see the RUN_RE note.
+    for label, text in (
+        ("bare", "run=20261019-1502-h3n7"),
+        ("backticked", "run=`20261019-1502-h3n7`"),
+        ("space", "Done by run 20261019-1502-h3n7 — commit abc."),
+        ("space-backticked", "Swept by run `20261019-1502-h3n7`."),
+        ("italic", "_run=20261019-1502-h3n7_"),
+    ):
+        got = parse_run(text)
+        cases.append((f"parse_run reads the {label} id form",
+                      got is not None and got[0] == "20261019-1502-h3n7"))
+    cases.append(("parse_run does not read a bare id as a run reference",
+                  parse_run("the id 20261019-1502-h3n7 appears with no word before it") is None))
+    cases.append(("parse_run does not read 'rerun=' as a run reference",
+                  parse_run("a rerun=20261019-1502-h3n7 was skipped") is None))
+    cases.append(("parse_run dates a backticked id from the id itself",
+                  (lambda p: p is not None and p[1] == dt.datetime(2026, 10, 19, 15, 2, tzinfo=dt.timezone.utc))(
+                      parse_run("**Done** — run=`20261019-1502-h3n7`, branch `main`."))))
     cases.append(("parse_run rejects an out-of-range month", parse_run("run=20261399-0000-aaaa") is None))
     cases.append(("parse_run rejects a short suffix", parse_run("run=20260923-0523-ab") is None))
 
