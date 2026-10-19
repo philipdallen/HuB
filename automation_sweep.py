@@ -91,7 +91,12 @@ SOURCE_REPOS = ("ephapse", "PleaNP", "rubato", "Maith")
 QUEUE_REPOS = SOURCE_REPOS + ("HuB",)
 
 # A run-id is <YYYYMMDD>-<HHMM>-<4 random alphanumerics>, per the contract.
-RUN_RE = re.compile(r"run=(\d{8})-(\d{4})-([a-z0-9]{4})")
+# The id may be bare (`run=20261019-1502-h3n7`) or wrapped in backticks for
+# Markdown (`run=\`20261019-1502-h3n7\``). Both forms appear in real comments —
+# ephapse uses the backticked form in a third of its run references — and a
+# bare-only pattern silently drops the wrapped ones, losing the run and its
+# outcome. The optional backticks keep the capture groups in the same order.
+RUN_RE = re.compile(r"run=`?(\d{8})-(\d{4})-([a-z0-9]{4})")
 RUN_ID_RE = re.compile(r"(\d{8})-(\d{4})-([a-z0-9]{4})")
 CLAIM_FILE_RE = re.compile(r"(\d+)\.claim")
 # A claim comment opens with "claimed" ("claimed by openhands run=..." or
@@ -619,6 +624,12 @@ def selftest() -> int:
     cases.append(("parse_run dates from the id itself",
                   got is not None and got[1] == dt.datetime(2026, 9, 23, 5, 23, tzinfo=dt.timezone.utc)))
     cases.append(("parse_run ignores text without an id", parse_run("no run id here") is None))
+    # A backticked id (Markdown inline code) is the same id. A bare-only pattern
+    # drops it, which loses the run and its outcome — see the RUN_RE note.
+    bt = parse_run("**Done** — run=`20261019-1502-h3n7`, branch `main`.")
+    cases.append(("parse_run reads a backticked id", bt is not None and bt[0] == "20261019-1502-h3n7"))
+    cases.append(("parse_run dates a backticked id from the id itself",
+                  bt is not None and bt[1] == dt.datetime(2026, 10, 19, 15, 2, tzinfo=dt.timezone.utc)))
     cases.append(("parse_run rejects an out-of-range month", parse_run("run=20261399-0000-aaaa") is None))
     cases.append(("parse_run rejects a short suffix", parse_run("run=20260923-0523-ab") is None))
 
