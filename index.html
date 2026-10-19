@@ -98,6 +98,9 @@
   tr:last-child td { border-bottom: none; }
   td a { color: var(--blue); text-decoration: none; }
   td a:hover { text-decoration: underline; }
+  tr.rowlink { cursor: pointer; }
+  tr.rowlink:hover td { background: var(--bg); }
+  .tablewrap { overflow-x: auto; }
   .pill { display: inline-block; font-size: 0.66rem; padding: 1px 6px; border-radius: 8px;
     border: 1px solid var(--line-strong); color: var(--ink-dim); }
   .pill.done { border-color: var(--teal); color: var(--teal); }
@@ -593,14 +596,19 @@ function renderRunsChart(board) {
     + ` font-family="IBM Plex Mono, monospace" font-size="10" fill="var(--ink-dim)"`
     + ` text-anchor="end">${v}</text>`).join('');
 
-  // Label roughly weekly so dense logs cannot overprint the axis.
-  let ticks = '';
-  days.forEach((d, i) => {
-    if (i % 7 !== 0 && i !== days.length - 1) return;
-    ticks += `<text x="${(padL + i * bw + bw / 2).toFixed(1)}" y="${H - 8}"`
-      + ` font-family="IBM Plex Mono, monospace" font-size="10" fill="var(--ink-dim)"`
-      + ` text-anchor="middle">${esc(d.slice(5))}</text>`;
-  });
+  // Label roughly weekly so dense logs cannot overprint the axis. Always label
+  // the last day, but only if it clears the previous tick: at 30 days the weekly
+  // ticks land ~31.7px apart, and a forced final tick would sit on top of the
+  // one before it (two ~30px labels in a 31.7px gap).
+  const tickIdx = days.map((d, i) => i).filter(i => i % 7 === 0);
+  const lastIdx = days.length - 1;
+  if (lastIdx >= 0 && (tickIdx.length === 0 || (lastIdx - tickIdx[tickIdx.length - 1]) * bw >= 34)) {
+    tickIdx.push(lastIdx);
+  }
+  const ticks = tickIdx.map(i =>
+    `<text x="${(padL + i * bw + bw / 2).toFixed(1)}" y="${H - 8}"`
+    + ` font-family="IBM Plex Mono, monospace" font-size="10" fill="var(--ink-dim)"`
+    + ` text-anchor="middle">${esc(days[i].slice(5))}</text>`).join('');
 
   svg.innerHTML = `
     <line x1="${padL}" y1="${padT}" x2="${W - padR}" y2="${padT}" stroke="var(--line)" />
@@ -622,13 +630,17 @@ function renderRecentRuns(board) {
       scheduler is broken.</div>`;
     return;
   }
-  el.innerHTML = `<table><thead><tr>
+  // The heading promises "every row opens its issue", so the whole row is
+  // clickable, not just the Issue cell. The cell keeps its anchor for keyboard
+  // and middle-click; the row handler is mouse-only enhancement on top.
+  el.innerHTML = `<div class="tablewrap"><table><thead><tr>
       <th>Run</th><th>Repo</th><th>Issue</th><th>Started</th><th>Duration</th><th>Outcome</th>
     </tr></thead><tbody>` + runs.map(r => {
     const outcome = r.outcome === 'done'
       ? '<span class="pill done">done</span>'
       : '<span class="pill open">no done comment</span>';
-    return `<tr>
+    const href = r.issue ? issueUrl(r.repo, r.issue) : null;
+    return `<tr${href ? ` class="rowlink" data-href="${esc(href)}"` : ''}>
       <td>${esc(r.run_id)}</td>
       <td>${esc(r.repo)}</td>
       <td>${r.issue ? issueLink(r.repo, r.issue) : '—'}</td>
@@ -636,8 +648,17 @@ function renderRecentRuns(board) {
       <td>${esc(fmtMinutes(r.minutes))}</td>
       <td>${outcome}</td>
     </tr>`;
-  }).join('') + `</tbody></table>`;
+  }).join('') + `</tbody></table></div>`;
 }
+
+// One delegated listener for every clickable row, so the markup above stays a
+// plain string and re-rendering cannot leak handlers.
+document.addEventListener('click', ev => {
+  const row = ev.target.closest && ev.target.closest('tr.rowlink');
+  if (!row || ev.target.closest('a')) return;
+  const href = row.getAttribute('data-href');
+  if (href) window.open(href, '_blank', 'noopener');
+});
 
 function renderQueueTable(queue) {
   const el = document.getElementById('queueTable');
@@ -650,7 +671,7 @@ function renderQueueTable(queue) {
     const url = issueListUrl(repo, label);
     return url ? `<a href="${esc(url)}" target="_blank" rel="noopener">${esc(n)}</a>` : esc(n);
   };
-  el.innerHTML = `<table><thead><tr>
+  el.innerHTML = `<div class="tablewrap"><table><thead><tr>
       <th>Repo</th><th>Available</th><th>Claimed</th><th>Blocked (needs input)</th><th>On hold (audit)</th>
     </tr></thead><tbody>` + repos.map(repo => {
     const q = queue[repo];
@@ -661,7 +682,7 @@ function renderQueueTable(queue) {
       <td>${cell(repo, q.blocked_needs_input, 'status:blocked-needs-input')}</td>
       <td>${cell(repo, q.on_hold, 'on-hold')}</td>
     </tr>`;
-  }).join('') + `</tbody></table>
+  }).join('') + `</tbody></table></div>
   <div class="legend"><div class="item">Counts link to the filtered GitHub issue list. On hold is
     the auditor's promotion queue — the human gate — and is not a "needs input" item.</div></div>`;
 }
@@ -672,7 +693,7 @@ function renderNeedsYou(needs) {
     el.innerHTML = `<div class="state-msg">Nothing is waiting on you.</div>`;
     return;
   }
-  el.innerHTML = `<table><thead><tr>
+  el.innerHTML = `<div class="tablewrap"><table><thead><tr>
       <th>Opened</th><th>Issue</th><th>Title</th><th>Labels</th>
     </tr></thead><tbody>` + needs.map(e => {
     const labels = (e.labels || []).map(l => `<span class="pill">${esc(l)}</span>`).join(' ');
@@ -682,7 +703,7 @@ function renderNeedsYou(needs) {
       <td>${esc(e.title || '')}</td>
       <td>${labels}</td>
     </tr>`;
-  }).join('') + `</tbody></table>`;
+  }).join('') + `</tbody></table></div>`;
 }
 
 function renderLog(entries) {
