@@ -534,12 +534,12 @@ function renderStrip(board, latest, claims) {
       mini: staleSweep ? 'stale — expected within 6h' : 'fresh' },
     { lbl: 'Runs (24h)', val: em(runs24), href: '#recentRuns',
       title: 'the recent-runs table below', cls: '',
-      // A run that touched two repos is one run in the total (deduped by id)
-      // but appears under both repos here, so the parts can sum above the
+      // A run that touched several repos is one run in the total (deduped by
+      // id) but appears under each repo here, so the parts can sum above the
       // whole. Say so in the visible text, not only a tooltip: an unexplained
       // 40 next to parts summing to 44 reads as an arithmetic error.
-      mini: breakdown ? `${breakdown} · some runs span two repos` : '—',
-      miniTitle: 'runs by repo; a run that touched two repos appears under each, '
+      mini: breakdown ? `${breakdown} · some runs span more than one repo` : '—',
+      miniTitle: 'runs by repo; a run that touched several repos appears under each, '
                + 'so these can sum above the total' },
     { lbl: 'Claims held now', val: claimsTotal === undefined ? '—' : esc(claimsTotal),
       href: claimsDrill, title: 'the claim files behind this count',
