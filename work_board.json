@@ -1,6 +1,5 @@
 {
   "agent_minutes_by_day": {
-    "2026-09-20": 0.0,
     "2026-09-21": 0.0,
     "2026-09-22": 529.3,
     "2026-09-23": 202.0,
@@ -29,10 +28,11 @@
     "2026-10-16": 17.3,
     "2026-10-17": 54.3,
     "2026-10-18": 386.2,
-    "2026-10-19": 430.1
+    "2026-10-19": 430.1,
+    "2026-10-20": 6.6
   },
   "claims": {},
-  "generated": "2026-10-19T23:02:03Z",
+  "generated": "2026-10-20T01:41:26Z",
   "needs_you": [
     {
       "labels": [
@@ -301,17 +301,6 @@
     },
     {
       "labels": [
-        "infrastructure",
-        "kind:gate",
-        "status:blocked-needs-input"
-      ],
-      "number": 425,
-      "opened": "2026-10-19",
-      "repo": "rubato",
-      "title": "ops(muse_cdn): redeploy the worker so the live build matches main"
-    },
-    {
-      "labels": [
         "kind:decision",
         "security",
         "status:blocked-needs-input"
@@ -320,6 +309,17 @@
       "opened": "2026-10-19",
       "repo": "rubato",
       "title": "security(muse_cdn): decide the fate of ?token= query-string auth"
+    },
+    {
+      "labels": [
+        "infrastructure",
+        "kind:gap",
+        "status:blocked-needs-input"
+      ],
+      "number": 429,
+      "opened": "2026-10-20",
+      "repo": "rubato",
+      "title": "ops(muse_cdn): provision CLOUDFLARE_API_TOKEN so deploy-muse-cdn.yml can actually deploy"
     }
   ],
   "queue": {
@@ -392,8 +392,8 @@
         397,
         398,
         415,
-        425,
-        426
+        426,
+        429
       ],
       "blocked_needs_input": 6,
       "claimed": 0,
@@ -401,6 +401,22 @@
     }
   },
   "recent_runs": [
+    {
+      "issue": 429,
+      "minutes": 3.6,
+      "outcome": "done",
+      "repo": "rubato",
+      "run_id": "20261020-0121-lhfr",
+      "start": "2026-10-20T01:21:00Z"
+    },
+    {
+      "issue": 425,
+      "minutes": 3.0,
+      "outcome": "done",
+      "repo": "rubato",
+      "run_id": "20261020-0117-rpyh",
+      "start": "2026-10-20T01:17:00Z"
+    },
     {
       "issue": 425,
       "minutes": null,
@@ -544,22 +560,6 @@
       "repo": "rubato",
       "run_id": "20261019-0741-2g2w",
       "start": "2026-10-19T07:41:00Z"
-    },
-    {
-      "issue": 420,
-      "minutes": 8.2,
-      "outcome": "done",
-      "repo": "rubato",
-      "run_id": "20261019-0722-jptg",
-      "start": "2026-10-19T07:22:00Z"
-    },
-    {
-      "issue": 419,
-      "minutes": 14.0,
-      "outcome": "done",
-      "repo": "rubato",
-      "run_id": "20261019-0702-j7l2",
-      "start": "2026-10-19T07:02:00Z"
     }
   ],
   "repos": [
@@ -569,14 +569,13 @@
     "rubato"
   ],
   "runs_24h_by_repo": {
-    "Maith": 5,
-    "PleaNP": 8,
-    "ephapse": 14,
-    "rubato": 15
+    "Maith": 4,
+    "PleaNP": 7,
+    "ephapse": 12,
+    "rubato": 17
   },
   "runs_by_day": {
     "Maith": {
-      "2026-09-20": 0,
       "2026-09-21": 0,
       "2026-09-22": 1,
       "2026-09-23": 9,
@@ -605,10 +604,10 @@
       "2026-10-16": 4,
       "2026-10-17": 4,
       "2026-10-18": 9,
-      "2026-10-19": 5
+      "2026-10-19": 5,
+      "2026-10-20": 0
     },
     "PleaNP": {
-      "2026-09-20": 0,
       "2026-09-21": 0,
       "2026-09-22": 19,
       "2026-09-23": 9,
@@ -637,10 +636,10 @@
       "2026-10-16": 0,
       "2026-10-17": 4,
       "2026-10-18": 0,
-      "2026-10-19": 8
+      "2026-10-19": 8,
+      "2026-10-20": 0
     },
     "ephapse": {
-      "2026-09-20": 0,
       "2026-09-21": 1,
       "2026-09-22": 31,
       "2026-09-23": 17,
@@ -669,10 +668,10 @@
       "2026-10-16": 3,
       "2026-10-17": 5,
       "2026-10-18": 16,
-      "2026-10-19": 14
+      "2026-10-19": 14,
+      "2026-10-20": 0
     },
     "rubato": {
-      "2026-09-20": 0,
       "2026-09-21": 0,
       "2026-09-22": 4,
       "2026-09-23": 13,
@@ -701,7 +700,8 @@
       "2026-10-16": 8,
       "2026-10-17": 9,
       "2026-10-18": 10,
-      "2026-10-19": 15
+      "2026-10-19": 15,
+      "2026-10-20": 2
     }
   }
 }
