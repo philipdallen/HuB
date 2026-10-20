@@ -29,10 +29,10 @@
     "2026-10-17": 54.3,
     "2026-10-18": 386.2,
     "2026-10-19": 430.1,
-    "2026-10-20": 6.6
+    "2026-10-20": 262.3
   },
   "claims": {},
-  "generated": "2026-10-20T01:41:26Z",
+  "generated": "2026-10-20T07:24:49Z",
   "needs_you": [
     {
       "labels": [
@@ -312,6 +312,16 @@
     },
     {
       "labels": [
+        "kind:gap",
+        "status:blocked-needs-input"
+      ],
+      "number": 165,
+      "opened": "2026-10-20",
+      "repo": "ephapse",
+      "title": "Resolve composition pre-registration section 11 preconditions"
+    },
+    {
+      "labels": [
         "infrastructure",
         "kind:gap",
         "status:blocked-needs-input"
@@ -378,9 +388,10 @@
         23,
         36,
         102,
-        136
+        136,
+        165
       ],
-      "blocked_needs_input": 7,
+      "blocked_needs_input": 8,
       "claimed": 0,
       "on_hold": 11
     },
@@ -401,6 +412,102 @@
     }
   },
   "recent_runs": [
+    {
+      "issue": 331,
+      "minutes": null,
+      "outcome": null,
+      "repo": "rubato",
+      "run_id": "20261020-0621-nzuy",
+      "start": "2026-10-20T06:21:00Z"
+    },
+    {
+      "issue": 169,
+      "minutes": 8.5,
+      "outcome": "done",
+      "repo": "ephapse",
+      "run_id": "20261020-0602-3iim",
+      "start": "2026-10-20T06:02:00Z"
+    },
+    {
+      "issue": 168,
+      "minutes": 8.9,
+      "outcome": "done",
+      "repo": "ephapse",
+      "run_id": "20261020-0541-0lli",
+      "start": "2026-10-20T05:41:00Z"
+    },
+    {
+      "issue": 167,
+      "minutes": 26.4,
+      "outcome": "done",
+      "repo": "ephapse",
+      "run_id": "20261020-0501-q7z3",
+      "start": "2026-10-20T05:01:00Z"
+    },
+    {
+      "issue": 162,
+      "minutes": null,
+      "outcome": null,
+      "repo": "ephapse",
+      "run_id": "20261020-0420-k7m2",
+      "start": "2026-10-20T04:20:00Z"
+    },
+    {
+      "issue": 161,
+      "minutes": 25.0,
+      "outcome": "done",
+      "repo": "ephapse",
+      "run_id": "20261020-0401-hq7k",
+      "start": "2026-10-20T04:01:00Z"
+    },
+    {
+      "issue": 165,
+      "minutes": null,
+      "outcome": null,
+      "repo": "ephapse",
+      "run_id": "20261020-0340-wmkm",
+      "start": "2026-10-20T03:40:00Z"
+    },
+    {
+      "issue": 164,
+      "minutes": 30.2,
+      "outcome": "done",
+      "repo": "ephapse",
+      "run_id": "20261020-0321-wt6q",
+      "start": "2026-10-20T03:21:00Z"
+    },
+    {
+      "issue": 162,
+      "minutes": 106.4,
+      "outcome": "done",
+      "repo": "ephapse",
+      "run_id": "20261020-0301-nb4q",
+      "start": "2026-10-20T03:01:00Z"
+    },
+    {
+      "issue": 166,
+      "minutes": 12.1,
+      "outcome": "done",
+      "repo": "ephapse",
+      "run_id": "20261020-0240-blo6",
+      "start": "2026-10-20T02:40:00Z"
+    },
+    {
+      "issue": 160,
+      "minutes": 13.8,
+      "outcome": "done",
+      "repo": "ephapse",
+      "run_id": "20261020-0220-660c",
+      "start": "2026-10-20T02:20:00Z"
+    },
+    {
+      "issue": 159,
+      "minutes": 24.4,
+      "outcome": "done",
+      "repo": "ephapse",
+      "run_id": "20261020-0200-2vrx",
+      "start": "2026-10-20T02:00:00Z"
+    },
     {
       "issue": 429,
       "minutes": 3.6,
@@ -464,102 +571,6 @@
       "repo": "Maith",
       "run_id": "20261019-1602-3upj",
       "start": "2026-10-19T16:02:00Z"
-    },
-    {
-      "issue": 153,
-      "minutes": 5.8,
-      "outcome": "done",
-      "repo": "ephapse",
-      "run_id": "20261019-1533-d9y9",
-      "start": "2026-10-19T15:33:00Z"
-    },
-    {
-      "issue": 152,
-      "minutes": 29.7,
-      "outcome": "done",
-      "repo": "ephapse",
-      "run_id": "20261019-1502-h3n7",
-      "start": "2026-10-19T15:02:00Z"
-    },
-    {
-      "issue": 331,
-      "minutes": null,
-      "outcome": null,
-      "repo": "rubato",
-      "run_id": "20261019-1421-t5l6",
-      "start": "2026-10-19T14:21:00Z"
-    },
-    {
-      "issue": 152,
-      "minutes": null,
-      "outcome": null,
-      "repo": "ephapse",
-      "run_id": "20261019-1241-r7k2",
-      "start": "2026-10-19T12:41:00Z"
-    },
-    {
-      "issue": 200,
-      "minutes": 17.3,
-      "outcome": "done",
-      "repo": "PleaNP",
-      "run_id": "20261019-1140-ycyn",
-      "start": "2026-10-19T11:40:00Z"
-    },
-    {
-      "issue": 152,
-      "minutes": null,
-      "outcome": null,
-      "repo": "ephapse",
-      "run_id": "20261019-1120-eph2",
-      "start": "2026-10-19T11:20:00Z"
-    },
-    {
-      "issue": 152,
-      "minutes": 24.3,
-      "outcome": "done",
-      "repo": "ephapse",
-      "run_id": "20261019-1040-p9x2",
-      "start": "2026-10-19T10:40:00Z"
-    },
-    {
-      "issue": 150,
-      "minutes": 19.0,
-      "outcome": "done",
-      "repo": "ephapse",
-      "run_id": "20261019-1020-xvhw",
-      "start": "2026-10-19T10:20:00Z"
-    },
-    {
-      "issue": 200,
-      "minutes": null,
-      "outcome": null,
-      "repo": "PleaNP",
-      "run_id": "20261019-1001-et9n",
-      "start": "2026-10-19T10:01:00Z"
-    },
-    {
-      "issue": 415,
-      "minutes": 63.5,
-      "outcome": "done",
-      "repo": "rubato",
-      "run_id": "20261019-0841-20ys",
-      "start": "2026-10-19T08:41:00Z"
-    },
-    {
-      "issue": 200,
-      "minutes": null,
-      "outcome": null,
-      "repo": "PleaNP",
-      "run_id": "20261019-0802-4t8s",
-      "start": "2026-10-19T08:02:00Z"
-    },
-    {
-      "issue": 418,
-      "minutes": 11.2,
-      "outcome": "done",
-      "repo": "rubato",
-      "run_id": "20261019-0741-2g2w",
-      "start": "2026-10-19T07:41:00Z"
     }
   ],
   "repos": [
@@ -569,10 +580,10 @@
     "rubato"
   ],
   "runs_24h_by_repo": {
-    "Maith": 4,
-    "PleaNP": 7,
-    "ephapse": 12,
-    "rubato": 17
+    "Maith": 1,
+    "PleaNP": 3,
+    "ephapse": 18,
+    "rubato": 12
   },
   "runs_by_day": {
     "Maith": {
@@ -669,7 +680,7 @@
       "2026-10-17": 5,
       "2026-10-18": 16,
       "2026-10-19": 14,
-      "2026-10-20": 0
+      "2026-10-20": 11
     },
     "rubato": {
       "2026-09-21": 0,
@@ -701,7 +712,7 @@
       "2026-10-17": 9,
       "2026-10-18": 10,
       "2026-10-19": 15,
-      "2026-10-20": 2
+      "2026-10-20": 3
     }
   }
 }
