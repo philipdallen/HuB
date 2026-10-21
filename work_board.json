@@ -32,7 +32,7 @@
     "2026-10-21": 40.4
   },
   "claims": {},
-  "generated": "2026-10-21T04:32:32Z",
+  "generated": "2026-10-21T09:33:04Z",
   "needs_you": [
     {
       "labels": [
@@ -582,8 +582,8 @@
   "runs_24h_by_repo": {
     "Maith": 2,
     "PleaNP": 1,
-    "ephapse": 4,
-    "rubato": 15
+    "ephapse": 1,
+    "rubato": 13
   },
   "runs_by_day": {
     "Maith": {
