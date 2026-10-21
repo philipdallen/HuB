@@ -1,6 +1,6 @@
 {
   "agent_minutes_by_day": {
-    "2026-09-22": 529.3,
+    "2026-09-22": 490.0,
     "2026-09-23": 202.0,
     "2026-09-24": 21.7,
     "2026-09-25": 49.3,
@@ -32,7 +32,7 @@
     "2026-10-21": 40.4
   },
   "claims": {},
-  "generated": "2026-10-21T14:36:49Z",
+  "generated": "2026-10-21T18:53:03Z",
   "needs_you": [
     {
       "labels": [
@@ -334,12 +334,14 @@
   ],
   "queue": {
     "HuB": {
-      "available": 4,
+      "available": 6,
       "available_issues": [
         13,
         19,
         21,
-        25
+        25,
+        26,
+        27
       ],
       "blocked_issues": [
         14
@@ -349,9 +351,11 @@
       "on_hold": 0
     },
     "Maith": {
-      "available": 1,
+      "available": 3,
       "available_issues": [
-        103
+        103,
+        104,
+        105
       ],
       "blocked_issues": [
         26,
@@ -365,9 +369,11 @@
       "on_hold": 11
     },
     "PleaNP": {
-      "available": 1,
+      "available": 3,
       "available_issues": [
-        208
+        208,
+        210,
+        211
       ],
       "blocked_issues": [
         18,
@@ -384,9 +390,11 @@
       "on_hold": 11
     },
     "ephapse": {
-      "available": 1,
+      "available": 3,
       "available_issues": [
-        173
+        173,
+        175,
+        176
       ],
       "blocked_issues": [
         17,
@@ -590,9 +598,9 @@
   ],
   "runs_24h_by_repo": {
     "Maith": 1,
-    "PleaNP": 1,
+    "PleaNP": 0,
     "ephapse": 1,
-    "rubato": 10
+    "rubato": 7
   },
   "runs_by_day": {
     "Maith": {
@@ -660,7 +668,7 @@
       "2026-10-21": 0
     },
     "ephapse": {
-      "2026-09-22": 31,
+      "2026-09-22": 29,
       "2026-09-23": 17,
       "2026-09-24": 0,
       "2026-09-25": 0,
@@ -692,7 +700,7 @@
       "2026-10-21": 0
     },
     "rubato": {
-      "2026-09-22": 4,
+      "2026-09-22": 3,
       "2026-09-23": 13,
       "2026-09-24": 12,
       "2026-09-25": 14,
