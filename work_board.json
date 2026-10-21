@@ -32,7 +32,7 @@
     "2026-10-21": 40.4
   },
   "claims": {},
-  "generated": "2026-10-21T09:33:04Z",
+  "generated": "2026-10-21T14:36:49Z",
   "needs_you": [
     {
       "labels": [
@@ -334,11 +334,12 @@
   ],
   "queue": {
     "HuB": {
-      "available": 3,
+      "available": 4,
       "available_issues": [
         13,
         19,
-        21
+        21,
+        25
       ],
       "blocked_issues": [
         14
@@ -348,8 +349,10 @@
       "on_hold": 0
     },
     "Maith": {
-      "available": 0,
-      "available_issues": [],
+      "available": 1,
+      "available_issues": [
+        103
+      ],
       "blocked_issues": [
         26,
         30,
@@ -362,8 +365,10 @@
       "on_hold": 11
     },
     "PleaNP": {
-      "available": 0,
-      "available_issues": [],
+      "available": 1,
+      "available_issues": [
+        208
+      ],
       "blocked_issues": [
         18,
         27,
@@ -379,8 +384,10 @@
       "on_hold": 11
     },
     "ephapse": {
-      "available": 0,
-      "available_issues": [],
+      "available": 1,
+      "available_issues": [
+        173
+      ],
       "blocked_issues": [
         17,
         18,
@@ -396,8 +403,10 @@
       "on_hold": 11
     },
     "rubato": {
-      "available": 0,
-      "available_issues": [],
+      "available": 1,
+      "available_issues": [
+        435
+      ],
       "blocked_issues": [
         211,
         397,
@@ -408,7 +417,7 @@
       ],
       "blocked_needs_input": 6,
       "claimed": 0,
-      "on_hold": 35
+      "on_hold": 36
     }
   },
   "recent_runs": [
@@ -580,10 +589,10 @@
     "rubato"
   ],
   "runs_24h_by_repo": {
-    "Maith": 2,
+    "Maith": 1,
     "PleaNP": 1,
     "ephapse": 1,
-    "rubato": 13
+    "rubato": 10
   },
   "runs_by_day": {
     "Maith": {
