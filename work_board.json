@@ -1,6 +1,6 @@
 {
   "agent_minutes_by_day": {
-    "2026-09-23": 202.0,
+    "2026-09-23": 157.7,
     "2026-09-24": 21.7,
     "2026-09-25": 49.3,
     "2026-09-26": 28.6,
@@ -32,8 +32,17 @@
     "2026-10-22": 74.7
   },
   "claims": {},
-  "generated": "2026-10-22T17:03:01Z",
+  "generated": "2026-10-22T20:29:29Z",
   "needs_you": [
+    {
+      "labels": [
+        "status:blocked-needs-input"
+      ],
+      "number": 211,
+      "opened": "2026-08-24",
+      "repo": "rubato",
+      "title": "E3 \u2014 The recording"
+    },
     {
       "labels": [
         "priority:high",
@@ -92,6 +101,46 @@
       "opened": "2026-09-12",
       "repo": "PleaNP",
       "title": "Rung 6 Anchor Object: P/NP model-equivalence anchor across upstream formalizations"
+    },
+    {
+      "labels": [
+        "enhancement",
+        "status:blocked-needs-input"
+      ],
+      "number": 26,
+      "opened": "2026-09-15",
+      "repo": "Maith",
+      "title": "Axiom-discovery: build the circuit-complexity transfer-target list (corpus plan Part 2)"
+    },
+    {
+      "labels": [
+        "enhancement",
+        "status:blocked-needs-input"
+      ],
+      "number": 30,
+      "opened": "2026-09-15",
+      "repo": "Maith",
+      "title": "Axiom-discovery: run the first candidate batch and log all outcomes"
+    },
+    {
+      "labels": [
+        "enhancement",
+        "status:blocked-needs-input"
+      ],
+      "number": 31,
+      "opened": "2026-09-15",
+      "repo": "Maith",
+      "title": "Axiom-discovery: conservativity/compression corpus (BLOCKED on upstream PleaNP.Circuits)"
+    },
+    {
+      "labels": [
+        "enhancement",
+        "status:blocked-needs-input"
+      ],
+      "number": 34,
+      "opened": "2026-09-16",
+      "repo": "Maith",
+      "title": "Gate 6: adversarial significance check via independent external models"
     },
     {
       "labels": [
@@ -154,6 +203,17 @@
     },
     {
       "labels": [
+        "documentation",
+        "portfolio-ops",
+        "status:blocked-needs-input"
+      ],
+      "number": 57,
+      "opened": "2026-09-20",
+      "repo": "Maith",
+      "title": "Record model revision and corpus hash for every reported figure in RUN_REGISTRY"
+    },
+    {
+      "labels": [
         "kind:protocol",
         "methodology",
         "needs-review",
@@ -191,6 +251,26 @@
     },
     {
       "labels": [
+        "kind:gap",
+        "status:blocked-needs-input"
+      ],
+      "number": 397,
+      "opened": "2026-10-09",
+      "repo": "rubato",
+      "title": "Split(#382)2/3 \u2014 wire the sfizz/SFZ primary renderer tier (fallback preserved, tier selectable)"
+    },
+    {
+      "labels": [
+        "kind:gap",
+        "status:blocked-needs-input"
+      ],
+      "number": 398,
+      "opened": "2026-10-09",
+      "repo": "rubato",
+      "title": "Split(#382)3/3 \u2014 same-mockup portability A/B and the written H3 finding"
+    },
+    {
+      "labels": [
         "kind:repair",
         "status:blocked-needs-input"
       ],
@@ -211,6 +291,27 @@
     },
     {
       "labels": [
+        "kind:hygiene",
+        "status:blocked-needs-input"
+      ],
+      "number": 415,
+      "opened": "2026-10-19",
+      "repo": "rubato",
+      "title": "docs: reconcile the branch/PR model across AGENTS.md and TASK_WORKFLOW.md"
+    },
+    {
+      "labels": [
+        "kind:decision",
+        "security",
+        "status:blocked-needs-input"
+      ],
+      "number": 426,
+      "opened": "2026-10-19",
+      "repo": "rubato",
+      "title": "security(muse_cdn): decide the fate of ?token= query-string auth"
+    },
+    {
+      "labels": [
         "kind:gap",
         "status:blocked-needs-input"
       ],
@@ -218,6 +319,28 @@
       "opened": "2026-10-20",
       "repo": "ephapse",
       "title": "Resolve composition pre-registration section 11 preconditions"
+    },
+    {
+      "labels": [
+        "infrastructure",
+        "kind:gap",
+        "status:blocked-needs-input"
+      ],
+      "number": 429,
+      "opened": "2026-10-20",
+      "repo": "rubato",
+      "title": "ops(muse_cdn): provision CLOUDFLARE_API_TOKEN so deploy-muse-cdn.yml can actually deploy"
+    },
+    {
+      "labels": [
+        "documentation",
+        "kind:hygiene",
+        "status:blocked-needs-input"
+      ],
+      "number": 104,
+      "opened": "2026-10-21",
+      "repo": "Maith",
+      "title": "Critique outreach: hypothesis grid and clean re-run record to Lean Zulip"
     },
     {
       "labels": [
@@ -260,6 +383,21 @@
       "claimed": 0,
       "on_hold": 0
     },
+    "Maith": {
+      "available": 0,
+      "available_issues": [],
+      "blocked_issues": [
+        26,
+        30,
+        31,
+        34,
+        57,
+        104
+      ],
+      "blocked_needs_input": 6,
+      "claimed": 0,
+      "on_hold": 11
+    },
     "PleaNP": {
       "available": 0,
       "available_issues": [],
@@ -295,6 +433,21 @@
       "blocked_needs_input": 9,
       "claimed": 0,
       "on_hold": 11
+    },
+    "rubato": {
+      "available": 0,
+      "available_issues": [],
+      "blocked_issues": [
+        211,
+        397,
+        398,
+        415,
+        426,
+        429
+      ],
+      "blocked_needs_input": 6,
+      "claimed": 0,
+      "on_hold": 42
     }
   },
   "recent_runs": [
@@ -473,7 +626,7 @@
   },
   "runs_by_day": {
     "Maith": {
-      "2026-09-23": 9,
+      "2026-09-23": 7,
       "2026-09-24": 9,
       "2026-09-25": 10,
       "2026-09-26": 7,
@@ -505,7 +658,7 @@
       "2026-10-22": 4
     },
     "PleaNP": {
-      "2026-09-23": 9,
+      "2026-09-23": 7,
       "2026-09-24": 5,
       "2026-09-25": 2,
       "2026-09-26": 5,
@@ -537,7 +690,7 @@
       "2026-10-22": 2
     },
     "ephapse": {
-      "2026-09-23": 17,
+      "2026-09-23": 12,
       "2026-09-24": 0,
       "2026-09-25": 0,
       "2026-09-26": 0,
@@ -569,7 +722,7 @@
       "2026-10-22": 4
     },
     "rubato": {
-      "2026-09-23": 13,
+      "2026-09-23": 11,
       "2026-09-24": 12,
       "2026-09-25": 14,
       "2026-09-26": 7,
