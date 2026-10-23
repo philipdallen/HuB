@@ -1,6 +1,5 @@
 {
   "agent_minutes_by_day": {
-    "2026-09-23": 110.6,
     "2026-09-24": 21.7,
     "2026-09-25": 49.3,
     "2026-09-26": 28.6,
@@ -29,10 +28,11 @@
     "2026-10-19": 430.1,
     "2026-10-20": 288.8,
     "2026-10-21": 40.4,
-    "2026-10-22": 74.7
+    "2026-10-22": 74.7,
+    "2026-10-23": 26.0
   },
   "claims": {},
-  "generated": "2026-10-22T23:31:28Z",
+  "generated": "2026-10-23T17:49:50Z",
   "needs_you": [
     {
       "labels": [
@@ -48,31 +48,10 @@
         "priority:high",
         "status:blocked-needs-input"
       ],
-      "number": 18,
-      "opened": "2026-09-06",
-      "repo": "PleaNP",
-      "title": "BGS separating-oracle path: decide the machine family + canonical decode (consolidates #23/#156)"
-    },
-    {
-      "labels": [
-        "priority:high",
-        "status:blocked-needs-input"
-      ],
       "number": 27,
       "opened": "2026-09-07",
       "repo": "PleaNP",
       "title": "Rendering campaign: U_B in NP^B \u2014 four substrate-direction options + lens-per-slot diversity (review design)"
-    },
-    {
-      "labels": [
-        "needs-gate",
-        "priority:high",
-        "status:blocked-needs-input"
-      ],
-      "number": 63,
-      "opened": "2026-09-12",
-      "repo": "PleaNP",
-      "title": "Lean 4 toolchain for unattended PleaNP proof runs: provision it, or declare Lean proof work out of scope"
     },
     {
       "labels": [
@@ -271,16 +250,6 @@
     },
     {
       "labels": [
-        "kind:repair",
-        "status:blocked-needs-input"
-      ],
-      "number": 136,
-      "opened": "2026-10-18",
-      "repo": "ephapse",
-      "title": "Reconcile shared-trio divergence (auditor.py security fix vs byte-identical rule)"
-    },
-    {
-      "labels": [
         "kind:defect",
         "status:blocked-needs-input"
       ],
@@ -363,14 +332,55 @@
       "opened": "2026-10-21",
       "repo": "ephapse",
       "title": "Critique outreach: DEC-043 design review and probe-data release"
+    },
+    {
+      "labels": [
+        "needs-gate",
+        "status:blocked-needs-input"
+      ],
+      "number": 214,
+      "opened": "2026-10-23",
+      "repo": "PleaNP",
+      "title": "BGS (a): mark SORRY_TRACKER #9 resolved after A5 lands (step 2/3 of #63)"
+    },
+    {
+      "labels": [
+        "needs-gate",
+        "status:blocked-needs-input"
+      ],
+      "number": 215,
+      "opened": "2026-10-23",
+      "repo": "PleaNP",
+      "title": "BGS (a): Comparator challenge module + JSON pin per DEC-022 (step 3/3 of #63)"
+    },
+    {
+      "labels": [
+        "needs-gate",
+        "priority:high",
+        "status:blocked-needs-input"
+      ],
+      "number": 216,
+      "opened": "2026-10-23",
+      "repo": "PleaNP",
+      "title": "BGS (a) A5 substrate: make the Gate 6 check falsifiable + prove A2 Computable (re-split of #213, step A)"
+    },
+    {
+      "labels": [
+        "kind:spec",
+        "needs-gate",
+        "status:blocked-needs-input"
+      ],
+      "number": 217,
+      "opened": "2026-10-23",
+      "repo": "PleaNP",
+      "title": "BGS (a) A5 substrate: decide the A3 witness substrate + file sub-steps (re-split of #213, step B)"
     }
   ],
   "queue": {
     "HuB": {
-      "available": 6,
+      "available": 5,
       "available_issues": [
         13,
-        19,
         21,
         25,
         26,
@@ -399,26 +409,32 @@
       "on_hold": 11
     },
     "PleaNP": {
-      "available": 0,
-      "available_issues": [],
+      "available": 1,
+      "available_issues": [
+        18
+      ],
       "blocked_issues": [
-        18,
         27,
-        63,
         77,
         78,
         79,
         162,
         205,
-        210
+        210,
+        214,
+        215,
+        216,
+        217
       ],
-      "blocked_needs_input": 9,
+      "blocked_needs_input": 11,
       "claimed": 0,
       "on_hold": 11
     },
     "ephapse": {
-      "available": 0,
-      "available_issues": [],
+      "available": 1,
+      "available_issues": [
+        136
+      ],
       "blocked_issues": [
         17,
         18,
@@ -426,17 +442,18 @@
         23,
         36,
         102,
-        136,
         165,
         175
       ],
-      "blocked_needs_input": 9,
+      "blocked_needs_input": 8,
       "claimed": 0,
       "on_hold": 11
     },
     "rubato": {
-      "available": 0,
-      "available_issues": [],
+      "available": 1,
+      "available_issues": [
+        443
+      ],
       "blocked_issues": [
         211,
         397,
@@ -451,6 +468,30 @@
     }
   },
   "recent_runs": [
+    {
+      "issue": 217,
+      "minutes": 6.8,
+      "outcome": "done",
+      "repo": "PleaNP",
+      "run_id": "20261023-0441-k9f2",
+      "start": "2026-10-23T04:41:00Z"
+    },
+    {
+      "issue": 216,
+      "minutes": 19.2,
+      "outcome": "done",
+      "repo": "PleaNP",
+      "run_id": "20261023-0421-k7dw",
+      "start": "2026-10-23T04:21:00Z"
+    },
+    {
+      "issue": 443,
+      "minutes": null,
+      "outcome": null,
+      "repo": "rubato",
+      "run_id": "20261023-0141-q4wz",
+      "start": "2026-10-23T01:41:00Z"
+    },
     {
       "issue": 331,
       "minutes": 6.4,
@@ -586,30 +627,6 @@
       "repo": "ephapse",
       "run_id": "20261020-2141-q7w2",
       "start": "2026-10-20T21:41:00Z"
-    },
-    {
-      "issue": 331,
-      "minutes": null,
-      "outcome": null,
-      "repo": "Maith",
-      "run_id": "20261020-1941-mprb",
-      "start": "2026-10-20T19:41:00Z"
-    },
-    {
-      "issue": 331,
-      "minutes": null,
-      "outcome": null,
-      "repo": "rubato",
-      "run_id": "20261020-1901-p5d0",
-      "start": "2026-10-20T19:01:00Z"
-    },
-    {
-      "issue": 331,
-      "minutes": null,
-      "outcome": null,
-      "repo": "rubato",
-      "run_id": "20261020-1741-klbl",
-      "start": "2026-10-20T17:41:00Z"
     }
   ],
   "repos": [
@@ -619,14 +636,13 @@
     "rubato"
   ],
   "runs_24h_by_repo": {
-    "Maith": 4,
+    "Maith": 0,
     "PleaNP": 2,
-    "ephapse": 4,
-    "rubato": 4
+    "ephapse": 0,
+    "rubato": 1
   },
   "runs_by_day": {
     "Maith": {
-      "2026-09-23": 6,
       "2026-09-24": 9,
       "2026-09-25": 10,
       "2026-09-26": 7,
@@ -655,10 +671,10 @@
       "2026-10-19": 5,
       "2026-10-20": 2,
       "2026-10-21": 0,
-      "2026-10-22": 4
+      "2026-10-22": 4,
+      "2026-10-23": 0
     },
     "PleaNP": {
-      "2026-09-23": 2,
       "2026-09-24": 5,
       "2026-09-25": 2,
       "2026-09-26": 5,
@@ -687,10 +703,10 @@
       "2026-10-19": 8,
       "2026-10-20": 1,
       "2026-10-21": 0,
-      "2026-10-22": 2
+      "2026-10-22": 2,
+      "2026-10-23": 2
     },
     "ephapse": {
-      "2026-09-23": 11,
       "2026-09-24": 0,
       "2026-09-25": 0,
       "2026-09-26": 0,
@@ -719,10 +735,10 @@
       "2026-10-19": 14,
       "2026-10-20": 12,
       "2026-10-21": 0,
-      "2026-10-22": 4
+      "2026-10-22": 4,
+      "2026-10-23": 0
     },
     "rubato": {
-      "2026-09-23": 8,
       "2026-09-24": 12,
       "2026-09-25": 14,
       "2026-09-26": 7,
@@ -751,7 +767,8 @@
       "2026-10-19": 15,
       "2026-10-20": 13,
       "2026-10-21": 4,
-      "2026-10-22": 4
+      "2026-10-22": 4,
+      "2026-10-23": 1
     }
   }
 }
