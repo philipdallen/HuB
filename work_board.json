@@ -1,6 +1,5 @@
 {
   "agent_minutes_by_day": {
-    "2026-09-24": 18.2,
     "2026-09-25": 49.3,
     "2026-09-26": 28.6,
     "2026-09-27": 2.8,
@@ -29,10 +28,11 @@
     "2026-10-20": 288.8,
     "2026-10-21": 40.4,
     "2026-10-22": 74.7,
-    "2026-10-23": 26.0
+    "2026-10-23": 26.0,
+    "2026-10-24": 119.1
   },
   "claims": {},
-  "generated": "2026-10-23T23:57:07Z",
+  "generated": "2026-10-24T16:52:45Z",
   "needs_you": [
     {
       "labels": [
@@ -374,6 +374,27 @@
       "opened": "2026-10-23",
       "repo": "PleaNP",
       "title": "BGS (a) A5 substrate: decide the A3 witness substrate + file sub-steps (re-split of #213, step B)"
+    },
+    {
+      "labels": [
+        "kind:spec",
+        "status:blocked-needs-input"
+      ],
+      "number": 443,
+      "opened": "2026-10-23",
+      "repo": "rubato",
+      "title": "Proof artifact: owner's LMD tune through the full Rubato pipeline (score + audio on CDN)"
+    },
+    {
+      "labels": [
+        "needs-gate",
+        "priority:high",
+        "status:blocked-needs-input"
+      ],
+      "number": 225,
+      "opened": "2026-10-24",
+      "repo": "PleaNP",
+      "title": "BGS (b) machine family: D6 assembly \u2014 close exists_separating_oracle (re-split of #18, step 4/4)"
     }
   ],
   "queue": {
@@ -409,10 +430,8 @@
       "on_hold": 11
     },
     "PleaNP": {
-      "available": 1,
-      "available_issues": [
-        18
-      ],
+      "available": 0,
+      "available_issues": [],
       "blocked_issues": [
         27,
         77,
@@ -424,17 +443,16 @@
         214,
         215,
         216,
-        217
+        217,
+        225
       ],
-      "blocked_needs_input": 11,
+      "blocked_needs_input": 12,
       "claimed": 0,
       "on_hold": 11
     },
     "ephapse": {
-      "available": 1,
-      "available_issues": [
-        136
-      ],
+      "available": 0,
+      "available_issues": [],
       "blocked_issues": [
         17,
         18,
@@ -450,24 +468,103 @@
       "on_hold": 11
     },
     "rubato": {
-      "available": 1,
-      "available_issues": [
-        443
-      ],
+      "available": 0,
+      "available_issues": [],
       "blocked_issues": [
         211,
         397,
         398,
         415,
         426,
-        429
+        429,
+        443
       ],
-      "blocked_needs_input": 6,
+      "blocked_needs_input": 7,
       "claimed": 0,
-      "on_hold": 42
+      "on_hold": 43
     }
   },
   "recent_runs": [
+    {
+      "issue": 331,
+      "minutes": 4.3,
+      "outcome": "done",
+      "repo": "rubato",
+      "run_id": "20261024-0521-a7f3",
+      "start": "2026-10-24T05:21:00Z"
+    },
+    {
+      "issue": 331,
+      "minutes": 4.5,
+      "outcome": "done",
+      "repo": "rubato",
+      "run_id": "20261024-0402-quxi",
+      "start": "2026-10-24T04:02:00Z"
+    },
+    {
+      "issue": 226,
+      "minutes": 27.0,
+      "outcome": "done",
+      "repo": "PleaNP",
+      "run_id": "20261024-0221-k7q2",
+      "start": "2026-10-24T02:21:00Z"
+    },
+    {
+      "issue": 225,
+      "minutes": 21.4,
+      "outcome": "done",
+      "repo": "PleaNP",
+      "run_id": "20261024-0202-slnb",
+      "start": "2026-10-24T02:02:00Z"
+    },
+    {
+      "issue": 224,
+      "minutes": 2.0,
+      "outcome": "done",
+      "repo": "PleaNP",
+      "run_id": "20261024-0141-1n5t",
+      "start": "2026-10-24T01:41:00Z"
+    },
+    {
+      "issue": 443,
+      "minutes": 12.1,
+      "outcome": "done",
+      "repo": "rubato",
+      "run_id": "20261024-0121-iqa4",
+      "start": "2026-10-24T01:21:00Z"
+    },
+    {
+      "issue": 223,
+      "minutes": null,
+      "outcome": null,
+      "repo": "PleaNP",
+      "run_id": "20261024-0102-h4zq",
+      "start": "2026-10-24T01:02:00Z"
+    },
+    {
+      "issue": 18,
+      "minutes": 14.8,
+      "outcome": "done",
+      "repo": "PleaNP",
+      "run_id": "20261024-0041-a7k2",
+      "start": "2026-10-24T00:41:00Z"
+    },
+    {
+      "issue": 18,
+      "minutes": 33.0,
+      "outcome": "done",
+      "repo": "PleaNP",
+      "run_id": "20261024-0021-wqte",
+      "start": "2026-10-24T00:21:00Z"
+    },
+    {
+      "issue": 136,
+      "minutes": null,
+      "outcome": null,
+      "repo": "ephapse",
+      "run_id": "20261024-0002-7k2m",
+      "start": "2026-10-24T00:02:00Z"
+    },
     {
       "issue": 217,
       "minutes": 6.8,
@@ -547,86 +644,6 @@
       "repo": "Maith",
       "run_id": "20261022-0201-ey5b",
       "start": "2026-10-22T02:01:00Z"
-    },
-    {
-      "issue": 105,
-      "minutes": 9.9,
-      "outcome": "done",
-      "repo": "Maith",
-      "run_id": "20261022-0141-6bsw",
-      "start": "2026-10-22T01:41:00Z"
-    },
-    {
-      "issue": 176,
-      "minutes": 17.6,
-      "outcome": "done",
-      "repo": "ephapse",
-      "run_id": "20261022-0102-gehl",
-      "start": "2026-10-22T01:02:00Z"
-    },
-    {
-      "issue": 173,
-      "minutes": null,
-      "outcome": null,
-      "repo": "ephapse",
-      "run_id": "20261022-0022-5vw7",
-      "start": "2026-10-22T00:22:00Z"
-    },
-    {
-      "issue": 103,
-      "minutes": 3.4,
-      "outcome": "done",
-      "repo": "Maith",
-      "run_id": "20261022-0005-q9bq",
-      "start": "2026-10-22T00:05:00Z"
-    },
-    {
-      "issue": 331,
-      "minutes": 21.3,
-      "outcome": "done",
-      "repo": "rubato",
-      "run_id": "20261021-0321-4ei8",
-      "start": "2026-10-21T03:21:00Z"
-    },
-    {
-      "issue": 331,
-      "minutes": 6.7,
-      "outcome": "done",
-      "repo": "rubato",
-      "run_id": "20261021-0140-7v58",
-      "start": "2026-10-21T01:40:00Z"
-    },
-    {
-      "issue": 331,
-      "minutes": 4.6,
-      "outcome": "done",
-      "repo": "rubato",
-      "run_id": "20261021-0101-0f1d",
-      "start": "2026-10-21T01:01:00Z"
-    },
-    {
-      "issue": 331,
-      "minutes": 7.8,
-      "outcome": "done",
-      "repo": "rubato",
-      "run_id": "20261021-0021-x7k2",
-      "start": "2026-10-21T00:21:00Z"
-    },
-    {
-      "issue": 331,
-      "minutes": 1.8,
-      "outcome": "done",
-      "repo": "rubato",
-      "run_id": "20261020-2350-9e69",
-      "start": "2026-10-20T23:50:00Z"
-    },
-    {
-      "issue": 102,
-      "minutes": null,
-      "outcome": null,
-      "repo": "ephapse",
-      "run_id": "20261020-2141-q7w2",
-      "start": "2026-10-20T21:41:00Z"
     }
   ],
   "repos": [
@@ -637,13 +654,12 @@
   ],
   "runs_24h_by_repo": {
     "Maith": 0,
-    "PleaNP": 2,
-    "ephapse": 0,
-    "rubato": 1
+    "PleaNP": 6,
+    "ephapse": 1,
+    "rubato": 3
   },
   "runs_by_day": {
     "Maith": {
-      "2026-09-24": 7,
       "2026-09-25": 10,
       "2026-09-26": 7,
       "2026-09-27": 5,
@@ -672,10 +688,10 @@
       "2026-10-20": 2,
       "2026-10-21": 0,
       "2026-10-22": 4,
-      "2026-10-23": 0
+      "2026-10-23": 0,
+      "2026-10-24": 0
     },
     "PleaNP": {
-      "2026-09-24": 5,
       "2026-09-25": 2,
       "2026-09-26": 5,
       "2026-09-27": 0,
@@ -704,10 +720,10 @@
       "2026-10-20": 1,
       "2026-10-21": 0,
       "2026-10-22": 2,
-      "2026-10-23": 2
+      "2026-10-23": 2,
+      "2026-10-24": 6
     },
     "ephapse": {
-      "2026-09-24": 0,
       "2026-09-25": 0,
       "2026-09-26": 0,
       "2026-09-27": 0,
@@ -736,10 +752,10 @@
       "2026-10-20": 12,
       "2026-10-21": 0,
       "2026-10-22": 4,
-      "2026-10-23": 0
+      "2026-10-23": 0,
+      "2026-10-24": 1
     },
     "rubato": {
-      "2026-09-24": 9,
       "2026-09-25": 14,
       "2026-09-26": 7,
       "2026-09-27": 5,
@@ -768,7 +784,8 @@
       "2026-10-20": 13,
       "2026-10-21": 4,
       "2026-10-22": 4,
-      "2026-10-23": 1
+      "2026-10-23": 1,
+      "2026-10-24": 3
     }
   }
 }
