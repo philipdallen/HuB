@@ -355,7 +355,7 @@ def build_runs(activity_by_repo: dict[str, list[dict]], repos_scanned: list[str]
         day = e["start"].strftime("%Y-%m-%d")
         for repo in e["repos"]:
             if repo in by_day:
-                by_day[repo][day] += 1
+                by_day[repo][day] = by_day[repo].get(day, 0) + 1
 
     minutes_by_day = {d: 0.0 for d in days}
     measured = False
@@ -368,7 +368,8 @@ def build_runs(activity_by_repo: dict[str, list[dict]], repos_scanned: list[str]
             delta = (e["done"] - e["start"]).total_seconds() / 60.0
             if delta >= 0:
                 minutes = round(delta, 1)
-                minutes_by_day[e["start"].strftime("%Y-%m-%d")] += minutes
+                day = e["start"].strftime("%Y-%m-%d")
+                minutes_by_day[day] = minutes_by_day.get(day, 0.0) + minutes
                 measured = True
         recent.append({
             "run_id": rid,
