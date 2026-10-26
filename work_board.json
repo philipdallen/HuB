@@ -1,6 +1,5 @@
 {
   "agent_minutes_by_day": {
-    "2026-09-26": 17.7,
     "2026-09-27": 2.8,
     "2026-09-28": 12.5,
     "2026-09-29": 49.2,
@@ -29,10 +28,11 @@
     "2026-10-22": 74.7,
     "2026-10-23": 26.0,
     "2026-10-24": 119.1,
-    "2026-10-25": 7.9
+    "2026-10-25": 7.9,
+    "2026-10-26": 135.9
   },
   "claims": {},
-  "generated": "2026-10-25T23:09:05Z",
+  "generated": "2026-10-26T14:06:32Z",
   "needs_you": [
     {
       "labels": [
@@ -80,46 +80,6 @@
       "opened": "2026-09-12",
       "repo": "PleaNP",
       "title": "Rung 6 Anchor Object: P/NP model-equivalence anchor across upstream formalizations"
-    },
-    {
-      "labels": [
-        "enhancement",
-        "status:blocked-needs-input"
-      ],
-      "number": 26,
-      "opened": "2026-09-15",
-      "repo": "Maith",
-      "title": "Axiom-discovery: build the circuit-complexity transfer-target list (corpus plan Part 2)"
-    },
-    {
-      "labels": [
-        "enhancement",
-        "status:blocked-needs-input"
-      ],
-      "number": 30,
-      "opened": "2026-09-15",
-      "repo": "Maith",
-      "title": "Axiom-discovery: run the first candidate batch and log all outcomes"
-    },
-    {
-      "labels": [
-        "enhancement",
-        "status:blocked-needs-input"
-      ],
-      "number": 31,
-      "opened": "2026-09-15",
-      "repo": "Maith",
-      "title": "Axiom-discovery: conservativity/compression corpus (BLOCKED on upstream PleaNP.Circuits)"
-    },
-    {
-      "labels": [
-        "enhancement",
-        "status:blocked-needs-input"
-      ],
-      "number": 34,
-      "opened": "2026-09-16",
-      "repo": "Maith",
-      "title": "Gate 6: adversarial significance check via independent external models"
     },
     {
       "labels": [
@@ -179,17 +139,6 @@
       "opened": "2026-09-19",
       "repo": "ephapse",
       "title": "The claim lock only covers sessions that use it: label/file divergence, and claim.py misreports a dead credential as a lost race"
-    },
-    {
-      "labels": [
-        "documentation",
-        "portfolio-ops",
-        "status:blocked-needs-input"
-      ],
-      "number": 57,
-      "opened": "2026-09-20",
-      "repo": "Maith",
-      "title": "Record model revision and corpus hash for every reported figure in RUN_REGISTRY"
     },
     {
       "labels": [
@@ -395,17 +344,43 @@
       "opened": "2026-10-24",
       "repo": "PleaNP",
       "title": "BGS (b) machine family: D6 assembly \u2014 close exists_separating_oracle (re-split of #18, step 4/4)"
+    },
+    {
+      "labels": [
+        "enhancement",
+        "status:blocked-needs-input"
+      ],
+      "number": 119,
+      "opened": "2026-10-26",
+      "repo": "Maith",
+      "title": "Axiom-discovery: formalize the benchmark target statements in Maith/Benchmark/ (corpus plan Part 2, step 4)"
+    },
+    {
+      "labels": [
+        "kind:gap",
+        "needs-gate",
+        "priority:high",
+        "status:blocked-needs-input"
+      ],
+      "number": 230,
+      "opened": "2026-10-26",
+      "repo": "PleaNP",
+      "title": "BGS (b) step 3b: prove the corrected `Machine \u2192 Code` bridge"
     }
   ],
   "queue": {
     "HuB": {
-      "available": 5,
+      "available": 9,
       "available_issues": [
         13,
         21,
         25,
         26,
-        27
+        27,
+        29,
+        30,
+        31,
+        33
       ],
       "blocked_issues": [
         14
@@ -415,23 +390,47 @@
       "on_hold": 0
     },
     "Maith": {
-      "available": 0,
-      "available_issues": [],
-      "blocked_issues": [
-        26,
+      "available": 13,
+      "available_issues": [
         30,
-        31,
-        34,
-        57,
-        104
+        109,
+        110,
+        111,
+        112,
+        113,
+        114,
+        115,
+        116,
+        117,
+        118,
+        121,
+        122
       ],
-      "blocked_needs_input": 6,
-      "claimed": 0,
+      "blocked_issues": [
+        104,
+        119
+      ],
+      "blocked_needs_input": 2,
+      "claimed": 1,
+      "claimed_issues": [
+        {
+          "claimed_at": "2026-10-26T02:06:00Z",
+          "number": 34
+        }
+      ],
       "on_hold": 11
     },
     "PleaNP": {
-      "available": 0,
-      "available_issues": [],
+      "available": 7,
+      "available_issues": [
+        229,
+        231,
+        232,
+        233,
+        234,
+        236,
+        237
+      ],
       "blocked_issues": [
         27,
         77,
@@ -444,15 +443,22 @@
         215,
         216,
         217,
-        225
+        225,
+        230
       ],
-      "blocked_needs_input": 12,
+      "blocked_needs_input": 13,
       "claimed": 0,
       "on_hold": 11
     },
     "ephapse": {
-      "available": 0,
-      "available_issues": [],
+      "available": 5,
+      "available_issues": [
+        185,
+        186,
+        187,
+        188,
+        189
+      ],
       "blocked_issues": [
         17,
         18,
@@ -468,8 +474,17 @@
       "on_hold": 11
     },
     "rubato": {
-      "available": 0,
-      "available_issues": [],
+      "available": 8,
+      "available_issues": [
+        448,
+        449,
+        450,
+        451,
+        452,
+        453,
+        454,
+        455
+      ],
       "blocked_issues": [
         211,
         397,
@@ -485,6 +500,118 @@
     }
   },
   "recent_runs": [
+    {
+      "issue": 120,
+      "minutes": 0.4,
+      "outcome": "done",
+      "repo": "Maith",
+      "run_id": "20261026-0224-t2t2",
+      "start": "2026-10-26T02:24:00Z"
+    },
+    {
+      "issue": 104,
+      "minutes": 8.3,
+      "outcome": "done",
+      "repo": "Maith",
+      "run_id": "20261026-0206-a7kd",
+      "start": "2026-10-26T02:06:00Z"
+    },
+    {
+      "issue": 34,
+      "minutes": 22.9,
+      "outcome": "done",
+      "repo": "Maith",
+      "run_id": "20261026-0206-9221",
+      "start": "2026-10-26T02:06:00Z"
+    },
+    {
+      "issue": 57,
+      "minutes": 15.8,
+      "outcome": "done",
+      "repo": "Maith",
+      "run_id": "20261026-0206-gige",
+      "start": "2026-10-26T02:06:00Z"
+    },
+    {
+      "issue": 26,
+      "minutes": 14.4,
+      "outcome": "done",
+      "repo": "Maith",
+      "run_id": "20261026-0206-46ky",
+      "start": "2026-10-26T02:06:00Z"
+    },
+    {
+      "issue": 235,
+      "minutes": null,
+      "outcome": null,
+      "repo": "PleaNP",
+      "run_id": "20261026-0201-x6xf",
+      "start": "2026-10-26T02:01:00Z"
+    },
+    {
+      "issue": 32,
+      "minutes": 14.7,
+      "outcome": "done",
+      "repo": "Maith",
+      "run_id": "20261026-0141-rl88",
+      "start": "2026-10-26T01:41:00Z"
+    },
+    {
+      "issue": 31,
+      "minutes": 8.5,
+      "outcome": "done",
+      "repo": "Maith",
+      "run_id": "20261026-0137-8bso",
+      "start": "2026-10-26T01:37:00Z"
+    },
+    {
+      "issue": 34,
+      "minutes": null,
+      "outcome": null,
+      "repo": "Maith",
+      "run_id": "20261026-0137-0l0q",
+      "start": "2026-10-26T01:37:00Z"
+    },
+    {
+      "issue": 26,
+      "minutes": 28.7,
+      "outcome": "done",
+      "repo": "Maith",
+      "run_id": "20261026-0137-k7m2",
+      "start": "2026-10-26T01:37:00Z"
+    },
+    {
+      "issue": 30,
+      "minutes": 2.9,
+      "outcome": "done",
+      "repo": "Maith",
+      "run_id": "20261026-0136-yvk5",
+      "start": "2026-10-26T01:36:00Z"
+    },
+    {
+      "issue": 225,
+      "minutes": 5.3,
+      "outcome": "done",
+      "repo": "PleaNP",
+      "run_id": "20261026-0132-ib4j",
+      "start": "2026-10-26T01:32:00Z"
+    },
+    {
+      "issue": 225,
+      "minutes": 9.0,
+      "outcome": "done",
+      "repo": "PleaNP",
+      "run_id": "20261026-0101-w6ay",
+      "start": "2026-10-26T01:01:00Z"
+    },
+    {
+      "issue": 324,
+      "minutes": 5.0,
+      "outcome": "done",
+      "repo": "rubato",
+      "run_id": "20261026-0004-1hsk",
+      "start": "2026-10-26T00:04:00Z"
+    },
     {
       "issue": 331,
       "minutes": 2.9,
@@ -532,118 +659,6 @@
       "repo": "PleaNP",
       "run_id": "20261024-0221-k7q2",
       "start": "2026-10-24T02:21:00Z"
-    },
-    {
-      "issue": 225,
-      "minutes": 21.4,
-      "outcome": "done",
-      "repo": "PleaNP",
-      "run_id": "20261024-0202-slnb",
-      "start": "2026-10-24T02:02:00Z"
-    },
-    {
-      "issue": 224,
-      "minutes": 2.0,
-      "outcome": "done",
-      "repo": "PleaNP",
-      "run_id": "20261024-0141-1n5t",
-      "start": "2026-10-24T01:41:00Z"
-    },
-    {
-      "issue": 443,
-      "minutes": 12.1,
-      "outcome": "done",
-      "repo": "rubato",
-      "run_id": "20261024-0121-iqa4",
-      "start": "2026-10-24T01:21:00Z"
-    },
-    {
-      "issue": 223,
-      "minutes": null,
-      "outcome": null,
-      "repo": "PleaNP",
-      "run_id": "20261024-0102-h4zq",
-      "start": "2026-10-24T01:02:00Z"
-    },
-    {
-      "issue": 18,
-      "minutes": 14.8,
-      "outcome": "done",
-      "repo": "PleaNP",
-      "run_id": "20261024-0041-a7k2",
-      "start": "2026-10-24T00:41:00Z"
-    },
-    {
-      "issue": 18,
-      "minutes": 33.0,
-      "outcome": "done",
-      "repo": "PleaNP",
-      "run_id": "20261024-0021-wqte",
-      "start": "2026-10-24T00:21:00Z"
-    },
-    {
-      "issue": 136,
-      "minutes": null,
-      "outcome": null,
-      "repo": "ephapse",
-      "run_id": "20261024-0002-7k2m",
-      "start": "2026-10-24T00:02:00Z"
-    },
-    {
-      "issue": 217,
-      "minutes": 6.8,
-      "outcome": "done",
-      "repo": "PleaNP",
-      "run_id": "20261023-0441-k9f2",
-      "start": "2026-10-23T04:41:00Z"
-    },
-    {
-      "issue": 216,
-      "minutes": 19.2,
-      "outcome": "done",
-      "repo": "PleaNP",
-      "run_id": "20261023-0421-k7dw",
-      "start": "2026-10-23T04:21:00Z"
-    },
-    {
-      "issue": 443,
-      "minutes": null,
-      "outcome": null,
-      "repo": "rubato",
-      "run_id": "20261023-0141-q4wz",
-      "start": "2026-10-23T01:41:00Z"
-    },
-    {
-      "issue": 331,
-      "minutes": 6.4,
-      "outcome": "done",
-      "repo": "rubato",
-      "run_id": "20261022-0621-6xzv",
-      "start": "2026-10-22T06:21:00Z"
-    },
-    {
-      "issue": 331,
-      "minutes": null,
-      "outcome": null,
-      "repo": "rubato",
-      "run_id": "20261022-0421-6byc",
-      "start": "2026-10-22T04:21:00Z"
-    },
-    {
-      "issue": 173,
-      "minutes": 23.1,
-      "outcome": "done",
-      "repo": "ephapse",
-      "run_id": "20261022-0340-j5i2",
-      "start": "2026-10-22T03:40:00Z"
-    },
-    {
-      "issue": 175,
-      "minutes": 4.1,
-      "outcome": "done",
-      "repo": "Maith",
-      "run_id": "20261022-0325-uz8h",
-      "start": "2026-10-22T03:25:00Z"
     }
   ],
   "repos": [
@@ -653,14 +668,13 @@
     "rubato"
   ],
   "runs_24h_by_repo": {
-    "Maith": 0,
-    "PleaNP": 0,
+    "Maith": 10,
+    "PleaNP": 3,
     "ephapse": 0,
-    "rubato": 3
+    "rubato": 1
   },
   "runs_by_day": {
     "Maith": {
-      "2026-09-26": 5,
       "2026-09-27": 5,
       "2026-09-28": 7,
       "2026-09-29": 14,
@@ -689,10 +703,10 @@
       "2026-10-22": 4,
       "2026-10-23": 0,
       "2026-10-24": 0,
-      "2026-10-25": 0
+      "2026-10-25": 0,
+      "2026-10-26": 10
     },
     "PleaNP": {
-      "2026-09-26": 3,
       "2026-09-27": 0,
       "2026-09-28": 4,
       "2026-09-29": 7,
@@ -721,10 +735,10 @@
       "2026-10-22": 2,
       "2026-10-23": 2,
       "2026-10-24": 6,
-      "2026-10-25": 0
+      "2026-10-25": 0,
+      "2026-10-26": 3
     },
     "ephapse": {
-      "2026-09-26": 0,
       "2026-09-27": 0,
       "2026-09-28": 2,
       "2026-09-29": 0,
@@ -753,10 +767,10 @@
       "2026-10-22": 4,
       "2026-10-23": 0,
       "2026-10-24": 1,
-      "2026-10-25": 0
+      "2026-10-25": 0,
+      "2026-10-26": 0
     },
     "rubato": {
-      "2026-09-26": 5,
       "2026-09-27": 5,
       "2026-09-28": 9,
       "2026-09-29": 14,
@@ -785,7 +799,8 @@
       "2026-10-22": 4,
       "2026-10-23": 1,
       "2026-10-24": 3,
-      "2026-10-25": 3
+      "2026-10-25": 3,
+      "2026-10-26": 1
     }
   }
 }
