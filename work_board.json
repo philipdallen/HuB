@@ -1,6 +1,5 @@
 {
   "agent_minutes_by_day": {
-    "2026-09-27": 0.0,
     "2026-09-28": 12.5,
     "2026-09-29": 49.2,
     "2026-09-30": 122.7,
@@ -29,10 +28,19 @@
     "2026-10-23": 26.0,
     "2026-10-24": 119.1,
     "2026-10-25": 7.9,
-    "2026-10-26": 135.9
+    "2026-10-26": 135.9,
+    "2026-10-27": 244.9
   },
-  "claims": {},
-  "generated": "2026-10-26T23:44:30Z",
+  "claims": {
+    "held": {
+      "ephapse": 1
+    },
+    "stale": [
+      "ephapse #185"
+    ],
+    "total": 1
+  },
+  "generated": "2026-10-27T04:49:12Z",
   "needs_you": [
     {
       "labels": [
@@ -357,6 +365,16 @@
     },
     {
       "labels": [
+        "enhancement",
+        "status:blocked-needs-input"
+      ],
+      "number": 122,
+      "opened": "2026-10-26",
+      "repo": "Maith",
+      "title": "Corpus Part 1 step 3: extract PleaNP.Circuits declarations into corpus.jsonl"
+    },
+    {
+      "labels": [
         "kind:gap",
         "needs-gate",
         "priority:high",
@@ -390,40 +408,32 @@
       "on_hold": 0
     },
     "Maith": {
-      "available": 13,
+      "available": 11,
       "available_issues": [
         30,
+        34,
         109,
         110,
         111,
         112,
-        113,
         114,
         115,
         116,
-        117,
         118,
-        121,
-        122
+        121
       ],
       "blocked_issues": [
         104,
-        119
+        119,
+        122
       ],
-      "blocked_needs_input": 2,
-      "claimed": 1,
-      "claimed_issues": [
-        {
-          "claimed_at": "2026-10-26T02:06:00Z",
-          "number": 34
-        }
-      ],
+      "blocked_needs_input": 3,
+      "claimed": 0,
       "on_hold": 11
     },
     "PleaNP": {
-      "available": 7,
+      "available": 6,
       "available_issues": [
-        229,
         231,
         232,
         233,
@@ -451,13 +461,9 @@
       "on_hold": 11
     },
     "ephapse": {
-      "available": 5,
+      "available": 1,
       "available_issues": [
-        185,
-        186,
-        187,
-        188,
-        189
+        187
       ],
       "blocked_issues": [
         17,
@@ -474,11 +480,9 @@
       "on_hold": 11
     },
     "rubato": {
-      "available": 8,
+      "available": 6,
       "available_issues": [
-        448,
         449,
-        450,
         451,
         452,
         453,
@@ -500,6 +504,94 @@
     }
   },
   "recent_runs": [
+    {
+      "issue": 450,
+      "minutes": 7.0,
+      "outcome": "done",
+      "repo": "rubato",
+      "run_id": "20261027-0441-7e70",
+      "start": "2026-10-27T04:41:00Z"
+    },
+    {
+      "issue": 113,
+      "minutes": 10.3,
+      "outcome": "done",
+      "repo": "Maith",
+      "run_id": "20261027-0341-kbw1",
+      "start": "2026-10-27T03:41:00Z"
+    },
+    {
+      "issue": 117,
+      "minutes": null,
+      "outcome": null,
+      "repo": "Maith",
+      "run_id": "20261027-0302-zaw2",
+      "start": "2026-10-27T03:02:00Z"
+    },
+    {
+      "issue": 189,
+      "minutes": 13.6,
+      "outcome": "done",
+      "repo": "ephapse",
+      "run_id": "20261027-0221-6r1m",
+      "start": "2026-10-27T02:21:00Z"
+    },
+    {
+      "issue": 186,
+      "minutes": 21.8,
+      "outcome": "done",
+      "repo": "ephapse",
+      "run_id": "20261027-0201-vccx",
+      "start": "2026-10-27T02:01:00Z"
+    },
+    {
+      "issue": 188,
+      "minutes": 3.8,
+      "outcome": "done",
+      "repo": "ephapse",
+      "run_id": "20261027-0141-yepc",
+      "start": "2026-10-27T01:41:00Z"
+    },
+    {
+      "issue": 185,
+      "minutes": 11.8,
+      "outcome": "done",
+      "repo": "ephapse",
+      "run_id": "20261027-0121-w7zz",
+      "start": "2026-10-27T01:21:00Z"
+    },
+    {
+      "issue": 230,
+      "minutes": 22.8,
+      "outcome": "done",
+      "repo": "PleaNP",
+      "run_id": "20261027-0102-ckhi",
+      "start": "2026-10-27T01:02:00Z"
+    },
+    {
+      "issue": 448,
+      "minutes": null,
+      "outcome": null,
+      "repo": "rubato",
+      "run_id": "20261027-0021-44qd",
+      "start": "2026-10-27T00:21:00Z"
+    },
+    {
+      "issue": 448,
+      "minutes": 122.8,
+      "outcome": "done",
+      "repo": "rubato",
+      "run_id": "20261027-0021-yd1o",
+      "start": "2026-10-27T00:21:00Z"
+    },
+    {
+      "issue": 229,
+      "minutes": 31.0,
+      "outcome": "done",
+      "repo": "Maith",
+      "run_id": "20261027-0001-s3ag",
+      "start": "2026-10-27T00:01:00Z"
+    },
     {
       "issue": 120,
       "minutes": 0.4,
@@ -571,94 +663,6 @@
       "repo": "Maith",
       "run_id": "20261026-0137-0l0q",
       "start": "2026-10-26T01:37:00Z"
-    },
-    {
-      "issue": 26,
-      "minutes": 28.7,
-      "outcome": "done",
-      "repo": "Maith",
-      "run_id": "20261026-0137-k7m2",
-      "start": "2026-10-26T01:37:00Z"
-    },
-    {
-      "issue": 30,
-      "minutes": 2.9,
-      "outcome": "done",
-      "repo": "Maith",
-      "run_id": "20261026-0136-yvk5",
-      "start": "2026-10-26T01:36:00Z"
-    },
-    {
-      "issue": 225,
-      "minutes": 5.3,
-      "outcome": "done",
-      "repo": "PleaNP",
-      "run_id": "20261026-0132-ib4j",
-      "start": "2026-10-26T01:32:00Z"
-    },
-    {
-      "issue": 225,
-      "minutes": 9.0,
-      "outcome": "done",
-      "repo": "PleaNP",
-      "run_id": "20261026-0101-w6ay",
-      "start": "2026-10-26T01:01:00Z"
-    },
-    {
-      "issue": 324,
-      "minutes": 5.0,
-      "outcome": "done",
-      "repo": "rubato",
-      "run_id": "20261026-0004-1hsk",
-      "start": "2026-10-26T00:04:00Z"
-    },
-    {
-      "issue": 331,
-      "minutes": 2.9,
-      "outcome": "done",
-      "repo": "rubato",
-      "run_id": "20261025-0502-5tvw",
-      "start": "2026-10-25T05:02:00Z"
-    },
-    {
-      "issue": 331,
-      "minutes": 2.1,
-      "outcome": "done",
-      "repo": "rubato",
-      "run_id": "20261025-0441-t4q9",
-      "start": "2026-10-25T04:41:00Z"
-    },
-    {
-      "issue": 324,
-      "minutes": 2.9,
-      "outcome": "done",
-      "repo": "rubato",
-      "run_id": "20261025-0120-ed2j",
-      "start": "2026-10-25T01:20:00Z"
-    },
-    {
-      "issue": 331,
-      "minutes": 4.3,
-      "outcome": "done",
-      "repo": "rubato",
-      "run_id": "20261024-0521-a7f3",
-      "start": "2026-10-24T05:21:00Z"
-    },
-    {
-      "issue": 331,
-      "minutes": 4.5,
-      "outcome": "done",
-      "repo": "rubato",
-      "run_id": "20261024-0402-quxi",
-      "start": "2026-10-24T04:02:00Z"
-    },
-    {
-      "issue": 226,
-      "minutes": 27.0,
-      "outcome": "done",
-      "repo": "PleaNP",
-      "run_id": "20261024-0221-k7q2",
-      "start": "2026-10-24T02:21:00Z"
     }
   ],
   "repos": [
@@ -668,14 +672,14 @@
     "rubato"
   ],
   "runs_24h_by_repo": {
-    "Maith": 10,
-    "PleaNP": 3,
-    "ephapse": 0,
-    "rubato": 1
+    "Maith": 3,
+    "PleaNP": 2,
+    "ephapse": 4,
+    "rubato": 4
   },
   "runs_by_day": {
     "Maith": {
-      "2026-09-27": 3,
+      "2026-09-27": 2,
       "2026-09-28": 7,
       "2026-09-29": 14,
       "2026-09-30": 11,
@@ -704,10 +708,10 @@
       "2026-10-23": 0,
       "2026-10-24": 0,
       "2026-10-25": 0,
-      "2026-10-26": 10
+      "2026-10-26": 10,
+      "2026-10-27": 3
     },
     "PleaNP": {
-      "2026-09-27": 0,
       "2026-09-28": 4,
       "2026-09-29": 7,
       "2026-09-30": 4,
@@ -736,10 +740,10 @@
       "2026-10-23": 2,
       "2026-10-24": 6,
       "2026-10-25": 0,
-      "2026-10-26": 3
+      "2026-10-26": 3,
+      "2026-10-27": 2
     },
     "ephapse": {
-      "2026-09-27": 0,
       "2026-09-28": 2,
       "2026-09-29": 0,
       "2026-09-30": 9,
@@ -768,10 +772,11 @@
       "2026-10-23": 0,
       "2026-10-24": 1,
       "2026-10-25": 0,
-      "2026-10-26": 0
+      "2026-10-26": 0,
+      "2026-10-27": 4
     },
     "rubato": {
-      "2026-09-27": 3,
+      "2026-09-27": 2,
       "2026-09-28": 9,
       "2026-09-29": 14,
       "2026-09-30": 11,
@@ -800,7 +805,8 @@
       "2026-10-23": 1,
       "2026-10-24": 3,
       "2026-10-25": 3,
-      "2026-10-26": 1
+      "2026-10-26": 1,
+      "2026-10-27": 4
     }
   }
 }
