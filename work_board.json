@@ -1,6 +1,6 @@
 {
   "agent_minutes_by_day": {
-    "2026-09-29": 45.9,
+    "2026-09-29": 39.2,
     "2026-09-30": 122.7,
     "2026-10-01": 35.8,
     "2026-10-02": 18.2,
@@ -30,10 +30,10 @@
     "2026-10-26": 135.9,
     "2026-10-27": 281.7,
     "2026-10-28": 78.9,
-    "2026-10-29": 11.4
+    "2026-10-29": 70.7
   },
   "claims": {},
-  "generated": "2026-10-29T01:42:16Z",
+  "generated": "2026-10-29T08:21:01Z",
   "needs_you": [
     {
       "labels": [
@@ -81,6 +81,16 @@
       "opened": "2026-09-12",
       "repo": "PleaNP",
       "title": "Rung 6 Anchor Object: P/NP model-equivalence anchor across upstream formalizations"
+    },
+    {
+      "labels": [
+        "enhancement",
+        "status:blocked-needs-input"
+      ],
+      "number": 34,
+      "opened": "2026-09-16",
+      "repo": "Maith",
+      "title": "Gate 6: adversarial significance check via independent external models"
     },
     {
       "labels": [
@@ -412,22 +422,21 @@
       "on_hold": 0
     },
     "Maith": {
-      "available": 7,
+      "available": 5,
       "available_issues": [
         30,
-        34,
         109,
         110,
         111,
-        114,
         121
       ],
       "blocked_issues": [
+        34,
         104,
         119,
         122
       ],
-      "blocked_needs_input": 3,
+      "blocked_needs_input": 4,
       "claimed": 0,
       "on_hold": 11
     },
@@ -478,9 +487,8 @@
       "on_hold": 11
     },
     "rubato": {
-      "available": 3,
+      "available": 2,
       "available_issues": [
-        449,
         452,
         454
       ],
@@ -500,6 +508,46 @@
     }
   },
   "recent_runs": [
+    {
+      "issue": 34,
+      "minutes": 14.8,
+      "outcome": "done",
+      "repo": "Maith",
+      "run_id": "20261029-0401-l17h",
+      "start": "2026-10-29T04:01:00Z"
+    },
+    {
+      "issue": 449,
+      "minutes": 29.4,
+      "outcome": "done",
+      "repo": "rubato",
+      "run_id": "20261029-0340-j1xx",
+      "start": "2026-10-29T03:40:00Z"
+    },
+    {
+      "issue": 449,
+      "minutes": null,
+      "outcome": null,
+      "repo": "rubato",
+      "run_id": "20261029-0321-xcw5",
+      "start": "2026-10-29T03:21:00Z"
+    },
+    {
+      "issue": 114,
+      "minutes": 15.1,
+      "outcome": "done",
+      "repo": "Maith",
+      "run_id": "20261029-0241-u3z7",
+      "start": "2026-10-29T02:41:00Z"
+    },
+    {
+      "issue": 449,
+      "minutes": null,
+      "outcome": null,
+      "repo": "rubato",
+      "run_id": "20261029-0152-k7m2",
+      "start": "2026-10-29T01:52:00Z"
+    },
     {
       "issue": 234,
       "minutes": 9.4,
@@ -619,46 +667,6 @@
       "repo": "Maith",
       "run_id": "20261027-0341-kbw1",
       "start": "2026-10-27T03:41:00Z"
-    },
-    {
-      "issue": 117,
-      "minutes": null,
-      "outcome": null,
-      "repo": "Maith",
-      "run_id": "20261027-0302-zaw2",
-      "start": "2026-10-27T03:02:00Z"
-    },
-    {
-      "issue": 189,
-      "minutes": 13.6,
-      "outcome": "done",
-      "repo": "ephapse",
-      "run_id": "20261027-0221-6r1m",
-      "start": "2026-10-27T02:21:00Z"
-    },
-    {
-      "issue": 186,
-      "minutes": 21.8,
-      "outcome": "done",
-      "repo": "ephapse",
-      "run_id": "20261027-0201-vccx",
-      "start": "2026-10-27T02:01:00Z"
-    },
-    {
-      "issue": 188,
-      "minutes": 3.8,
-      "outcome": "done",
-      "repo": "ephapse",
-      "run_id": "20261027-0141-yepc",
-      "start": "2026-10-27T01:41:00Z"
-    },
-    {
-      "issue": 185,
-      "minutes": 11.8,
-      "outcome": "done",
-      "repo": "ephapse",
-      "run_id": "20261027-0121-w7zz",
-      "start": "2026-10-27T01:21:00Z"
     }
   ],
   "repos": [
@@ -668,14 +676,14 @@
     "rubato"
   ],
   "runs_24h_by_repo": {
-    "Maith": 1,
-    "PleaNP": 3,
+    "Maith": 2,
+    "PleaNP": 2,
     "ephapse": 0,
-    "rubato": 3
+    "rubato": 4
   },
   "runs_by_day": {
     "Maith": {
-      "2026-09-29": 10,
+      "2026-09-29": 8,
       "2026-09-30": 11,
       "2026-10-01": 9,
       "2026-10-02": 10,
@@ -705,10 +713,10 @@
       "2026-10-26": 10,
       "2026-10-27": 5,
       "2026-10-28": 2,
-      "2026-10-29": 0
+      "2026-10-29": 2
     },
     "PleaNP": {
-      "2026-09-29": 7,
+      "2026-09-29": 4,
       "2026-09-30": 4,
       "2026-10-01": 1,
       "2026-10-02": 0,
@@ -773,7 +781,7 @@
       "2026-10-29": 0
     },
     "rubato": {
-      "2026-09-29": 10,
+      "2026-09-29": 8,
       "2026-09-30": 11,
       "2026-10-01": 10,
       "2026-10-02": 13,
@@ -803,7 +811,7 @@
       "2026-10-26": 1,
       "2026-10-27": 5,
       "2026-10-28": 2,
-      "2026-10-29": 1
+      "2026-10-29": 4
     }
   }
 }
