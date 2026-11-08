@@ -33,7 +33,7 @@
     "2026-11-08": 0.0
   },
   "claims": {},
-  "generated": "2026-11-08T14:11:24Z",
+  "generated": "2026-11-08T14:38:49Z",
   "needs_you": [
     {
       "labels": [
@@ -422,10 +422,13 @@
       "on_hold": 0
     },
     "Maith": {
-      "available": 2,
+      "available": 5,
       "available_issues": [
+        30,
+        109,
         110,
-        111
+        111,
+        121
       ],
       "blocked_issues": [
         34,
@@ -438,8 +441,13 @@
       "on_hold": 11
     },
     "PleaNP": {
-      "available": 0,
-      "available_issues": [],
+      "available": 4,
+      "available_issues": [
+        231,
+        232,
+        233,
+        237
+      ],
       "blocked_issues": [
         27,
         77,
@@ -460,8 +468,10 @@
       "on_hold": 11
     },
     "ephapse": {
-      "available": 0,
-      "available_issues": [],
+      "available": 1,
+      "available_issues": [
+        187
+      ],
       "blocked_issues": [
         17,
         18,
@@ -477,8 +487,10 @@
       "on_hold": 11
     },
     "rubato": {
-      "available": 0,
-      "available_issues": [],
+      "available": 1,
+      "available_issues": [
+        454
+      ],
       "blocked_issues": [
         211,
         397,
