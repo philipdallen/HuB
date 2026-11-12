@@ -32,7 +32,7 @@
     "2026-11-12": 0.0
   },
   "claims": {},
-  "generated": "2026-11-12T17:38:44Z",
+  "generated": "2026-11-12T18:16:38Z",
   "needs_you": [
     {
       "labels": [
@@ -451,13 +451,8 @@
       "on_hold": 11
     },
     "PleaNP": {
-      "available": 4,
-      "available_issues": [
-        231,
-        232,
-        233,
-        237
-      ],
+      "available": 0,
+      "available_issues": [],
       "blocked_issues": [
         27,
         77,
@@ -474,7 +469,21 @@
         230
       ],
       "blocked_needs_input": 13,
-      "claimed": 0,
+      "claimed": 4,
+      "claimed_issues": [
+        {
+          "number": 231
+        },
+        {
+          "number": 232
+        },
+        {
+          "number": 233
+        },
+        {
+          "number": 237
+        }
+      ],
       "on_hold": 11
     },
     "ephapse": {
@@ -517,6 +526,14 @@
     }
   },
   "recent_runs": [
+    {
+      "issue": 231,
+      "minutes": null,
+      "outcome": null,
+      "repo": "PleaNP",
+      "run_id": "20261112-1800-71b8",
+      "start": "2026-11-12T18:00:00Z"
+    },
     {
       "issue": 30,
       "minutes": null,
@@ -668,14 +685,6 @@
       "repo": "Maith",
       "run_id": "20261102-0420-5y2e",
       "start": "2026-11-02T04:20:00Z"
-    },
-    {
-      "issue": 331,
-      "minutes": 6.6,
-      "outcome": "done",
-      "repo": "Maith",
-      "run_id": "20261102-0340-x7k2",
-      "start": "2026-11-02T03:40:00Z"
     }
   ],
   "repos": [
@@ -686,7 +695,7 @@
   ],
   "runs_24h_by_repo": {
     "Maith": 3,
-    "PleaNP": 0,
+    "PleaNP": 1,
     "ephapse": 0,
     "rubato": 0
   },
@@ -753,7 +762,7 @@
       "2026-11-09": 0,
       "2026-11-10": 0,
       "2026-11-11": 0,
-      "2026-11-12": 0
+      "2026-11-12": 1
     },
     "ephapse": {
       "2026-10-14": 3,
