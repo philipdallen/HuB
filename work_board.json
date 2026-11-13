@@ -33,7 +33,7 @@
     "2026-11-13": 0.0
   },
   "claims": {},
-  "generated": "2026-11-13T10:38:46Z",
+  "generated": "2026-11-13T11:12:29Z",
   "needs_you": [
     {
       "labels": [
@@ -698,7 +698,7 @@
     "rubato"
   ],
   "runs_24h_by_repo": {
-    "Maith": 1,
+    "Maith": 0,
     "PleaNP": 1,
     "ephapse": 1,
     "rubato": 0
