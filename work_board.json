@@ -33,7 +33,7 @@
     "2026-11-15": 0.0
   },
   "claims": {},
-  "generated": "2026-11-15T11:38:52Z",
+  "generated": "2026-11-15T12:17:24Z",
   "needs_you": [
     {
       "labels": [
@@ -422,8 +422,14 @@
       "on_hold": 0
     },
     "Maith": {
-      "available": 0,
-      "available_issues": [],
+      "available": 5,
+      "available_issues": [
+        30,
+        109,
+        110,
+        111,
+        121
+      ],
       "blocked_issues": [
         34,
         104,
@@ -431,29 +437,17 @@
         122
       ],
       "blocked_needs_input": 4,
-      "claimed": 5,
-      "claimed_issues": [
-        {
-          "number": 30
-        },
-        {
-          "number": 109
-        },
-        {
-          "number": 110
-        },
-        {
-          "number": 111
-        },
-        {
-          "number": 121
-        }
-      ],
+      "claimed": 0,
       "on_hold": 11
     },
     "PleaNP": {
-      "available": 0,
-      "available_issues": [],
+      "available": 4,
+      "available_issues": [
+        231,
+        232,
+        233,
+        237
+      ],
       "blocked_issues": [
         27,
         77,
@@ -470,26 +464,14 @@
         230
       ],
       "blocked_needs_input": 13,
-      "claimed": 4,
-      "claimed_issues": [
-        {
-          "number": 231
-        },
-        {
-          "number": 232
-        },
-        {
-          "number": 233
-        },
-        {
-          "number": 237
-        }
-      ],
+      "claimed": 0,
       "on_hold": 11
     },
     "ephapse": {
-      "available": 0,
-      "available_issues": [],
+      "available": 1,
+      "available_issues": [
+        187
+      ],
       "blocked_issues": [
         17,
         18,
@@ -501,12 +483,7 @@
         175
       ],
       "blocked_needs_input": 8,
-      "claimed": 1,
-      "claimed_issues": [
-        {
-          "number": 187
-        }
-      ],
+      "claimed": 0,
       "on_hold": 11
     },
     "rubato": {
