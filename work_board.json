@@ -32,7 +32,7 @@
     "2026-11-21": 0.0
   },
   "claims": {},
-  "generated": "2026-11-21T09:13:38Z",
+  "generated": "2026-11-21T09:38:42Z",
   "needs_you": [
     {
       "labels": [
@@ -502,7 +502,7 @@
       ],
       "blocked_needs_input": 8,
       "claimed": 0,
-      "on_hold": 70
+      "on_hold": 71
     }
   },
   "recent_runs": [
